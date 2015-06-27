@@ -9,7 +9,8 @@
 #ifndef NuoDunProject_NuoDunBridgeHeaders_h
 #define NuoDunProject_NuoDunBridgeHeaders_h
 #import <AFNetworking.h>
-#import <JSONModel.h>
+//#import <JSONModel.h>
 #import "CALayer+XibConfiguration.h"
 #import <KeyboardManager.h>
+#import <ReactiveCocoa.h>
 #endif

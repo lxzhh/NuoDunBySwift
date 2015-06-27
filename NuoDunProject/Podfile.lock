@@ -21,16 +21,22 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - IQKeyboardManager (3.2.4)
-  - JSONModel (1.1.0)
+  - ReactiveCocoa (2.5):
+    - ReactiveCocoa/UI (= 2.5)
+  - ReactiveCocoa/Core (2.5):
+    - ReactiveCocoa/no-arc
+  - ReactiveCocoa/no-arc (2.5)
+  - ReactiveCocoa/UI (2.5):
+    - ReactiveCocoa/Core
 
 DEPENDENCIES:
-  - AFNetworking (~> 2.5.0)
+  - AFNetworking (~> 2.5.4)
   - IQKeyboardManager (~> 3.2.4)
-  - JSONModel (~> 1.1.0)
+  - ReactiveCocoa (~> 2.5)
 
 SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
   IQKeyboardManager: 555b1231fefafb21b19278d7cca72986a27b748b
-  JSONModel: ec77e9865236a7a09d9cf7668df6b4b328d9ec1d
+  ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
 
 COCOAPODS: 0.37.2
