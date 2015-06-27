@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <scenes>
+        <!--Login View Controller-->
+        <scene sceneID="EzQ-8W-WhH">
+            <objects>
+                <viewController storyboardIdentifier="NODLoginViewController" id="eeH-MV-7dZ" customClass="NODLoginViewController" customModule="NuoDunProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="QVh-rW-Dhw"/>
+                        <viewControllerLayoutGuide type="bottom" id="Y2q-tZ-00j"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="T4e-WP-d4F">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eae-Qy-i7x">
+                                <rect key="frame" x="-20" y="-20" width="360" height="608"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="登录背景" translatesAutoresizingMaskIntoConstraints="NO" id="lV5-rB-0p3">
+                                        <rect key="frame" x="20" y="20" width="320" height="568"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Lock" translatesAutoresizingMaskIntoConstraints="NO" id="yLA-PV-nmf">
+                                        <rect key="frame" x="47" y="341" width="22" height="22"/>
+                                    </imageView>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="13484265" borderStyle="roundedRect" placeholder="密码 区分大小写" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cFK-wf-g9V">
+                                        <rect key="frame" x="87" y="337" width="213" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                    </textField>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="标题" translatesAutoresizingMaskIntoConstraints="NO" id="Pwc-Pn-8Ch">
+                                        <rect key="frame" x="61" y="89" width="239" height="159"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="User" translatesAutoresizingMaskIntoConstraints="NO" id="Vqp-Dv-x4Q">
+                                        <rect key="frame" x="47" y="289" width="22" height="22"/>
+                                    </imageView>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="YYQ0-ZJND201502" borderStyle="roundedRect" placeholder="分包商账户" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FXG-jo-Tb1">
+                                        <rect key="frame" x="87" y="285" width="213" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oJK-zx-Twz">
+                                        <rect key="frame" x="36" y="403" width="288" height="37"/>
+                                        <color key="backgroundColor" red="0.15686274509803921" green="0.69019607843137254" blue="0.99215686274509807" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="登录">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="layer.borderUIColor">
+                                                <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="4"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="loginAction:" destination="eeH-MV-7dZ" eventType="touchUpInside" id="Lox-35-vL6"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="loginButton" destination="oJK-zx-Twz" id="zwb-Wd-NDE"/>
+                        <outlet property="nameTextField" destination="FXG-jo-Tb1" id="k5b-V1-v2N"/>
+                        <outlet property="pwdTextField" destination="cFK-wf-g9V" id="gN4-IL-ewM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="I84-fY-GrO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="509" y="298"/>
+        </scene>
+        <!--User View Controller-->
+        <scene sceneID="TV9-HU-ENh">
+            <objects>
+                <viewController storyboardIdentifier="NODUserViewController" id="LdW-6Q-XZX" customClass="NODUserViewController" customModule="NuoDunProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="HiX-vx-RY1"/>
+                        <viewControllerLayoutGuide type="bottom" id="iow-Rr-85M"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="HlZ-4U-Dj7">
+                        <rect key="frame" x="0.0" y="0.0" width="270" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="jJB-V9-IfN">
+                                <rect key="frame" x="0.0" y="124" width="270" height="320"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="LdW-6Q-XZX" id="3oJ-un-buu"/>
+                                    <outlet property="delegate" destination="LdW-6Q-XZX" id="ep9-lA-h4T"/>
+                                </connections>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dvc-um-G3q">
+                                <rect key="frame" x="77" y="41" width="117" height="48"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="figurePicker:" destination="LdW-6Q-XZX" eventType="touchUpInside" id="D6k-NJ-tHV"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yMt-rt-o17">
+                                <rect key="frame" x="16" y="482" width="125" height="45"/>
+                                <state key="normal" image="退出">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="exitAction:" destination="LdW-6Q-XZX" eventType="touchUpInside" id="Qqn-DG-GeZ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.13725490196078433" green="0.19215686274509805" blue="0.27450980392156865" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="270" height="568"/>
+                    <connections>
+                        <outlet property="actionMenu" destination="jJB-V9-IfN" id="coo-lw-hNe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VT4-ge-lzB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="893" y="298"/>
+        </scene>
+        <!--Main Controller-->
+        <scene sceneID="i0j-AC-FeX">
+            <objects>
+                <tableViewController storyboardIdentifier="NODMainController" id="uY3-FJ-UHh" customClass="NODMainController" customModule="NuoDunProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="SXf-f2-11L">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="mNL-Dk-bMt">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mNL-Dk-bMt" id="aH7-Tb-M3g">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="uY3-FJ-UHh" id="XQB-he-1dr"/>
+                            <outlet property="delegate" destination="uY3-FJ-UHh" id="woy-xd-a8O"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="Dwm-bD-kOa"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="65o-aT-1ed" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1985" y="190"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Dmd-Mw-CN9">
+            <objects>
+                <navigationController id="1Bp-Uf-xK1" sceneMemberID="viewController">
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="auu-qn-Ofr">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="uY3-FJ-UHh" kind="relationship" relationship="rootViewController" id="zcf-Rg-2IT"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tcZ-KQ-eKu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1591" y="190"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Lock" width="22" height="22"/>
+        <image name="User" width="22" height="22"/>
+        <image name="标题" width="239" height="159"/>
+        <image name="登录背景" width="360" height="640"/>
+        <image name="退出" width="125" height="45"/>
+    </resources>
+</document>
