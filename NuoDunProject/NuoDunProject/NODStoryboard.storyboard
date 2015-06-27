@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
     </dependencies>
     <scenes>
         <!--Login View Controller-->
@@ -96,7 +96,7 @@
                                     <outlet property="delegate" destination="LdW-6Q-XZX" id="ep9-lA-h4T"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dvc-um-G3q">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dvc-um-G3q">
                                 <rect key="frame" x="77" y="41" width="117" height="48"/>
                                 <state key="normal" title="Button">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -114,13 +114,24 @@
                                     <action selector="exitAction:" destination="LdW-6Q-XZX" eventType="touchUpInside" id="Qqn-DG-GeZ"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QuK-n7-L6y">
+                                <rect key="frame" x="114" y="82" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.13725490196078433" green="0.19215686274509805" blue="0.27450980392156865" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="QuK-n7-L6y" secondAttribute="centerX" id="E1P-oa-vWD"/>
+                            <constraint firstAttribute="centerX" secondItem="dvc-um-G3q" secondAttribute="centerX" id="HBx-VE-ZZ0"/>
+                        </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="270" height="568"/>
                     <connections>
                         <outlet property="actionMenu" destination="jJB-V9-IfN" id="coo-lw-hNe"/>
+                        <outlet property="userNameLabel" destination="QuK-n7-L6y" id="Kul-b3-tIL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VT4-ge-lzB" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -171,6 +182,23 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tcZ-KQ-eKu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1591" y="190"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="1EI-cd-RQJ">
+            <objects>
+                <viewController id="GbQ-7i-H32" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Cnk-uJ-TLh"/>
+                        <viewControllerLayoutGuide type="bottom" id="qVG-Nr-GBb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="NvF-6N-TiI">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TLv-dn-fTN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
         </scene>
     </scenes>
     <resources>

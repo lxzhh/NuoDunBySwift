@@ -15,7 +15,7 @@ class NODLoginViewController: UIViewController {
       @IBOutlet weak var loginButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
 
@@ -34,6 +34,7 @@ class NODLoginViewController: UIViewController {
             let user  = Mapper<LoginUser>().map(resultString!)
             println("resultString:\(resultString) user \(user)")
             if (user!.loginCode! == "1"){
+                user?.saveToPersistance()
                 self.dismissViewControllerAnimated(true, completion: nil)
             }
             

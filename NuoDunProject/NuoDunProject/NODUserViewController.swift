@@ -11,8 +11,11 @@ import UIKit
 class NODUserViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
 
     @IBOutlet weak var actionMenu: UITableView!
+    @IBOutlet weak var userNameLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
+        let loginUser = LoginUser.loadSaved()
+        userNameLabel.text = loginUser?.userName
         actionMenu.scrollEnabled = false
         actionMenu.separatorColor = UIColor.clearColor()
         actionMenu.registerNib(UINib(nibName: "NODMainMenuCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "NODMainMenuCell")
