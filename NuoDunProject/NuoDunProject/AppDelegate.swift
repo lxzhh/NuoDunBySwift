@@ -25,11 +25,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         self.window?.makeKeyAndVisible()
         let loginVC :NODLoginViewController = UIStoryboard(name: "NODStoryboard", bundle: nil).instantiateViewControllerWithIdentifier("NODLoginViewController") as! NODLoginViewController
-        
-        self.window?.rootViewController?.presentViewController(loginVC, animated: false, completion: nil)
+        if((LoginUser.loadSaved()) == nil){
+            self.window?.rootViewController?.presentViewController(loginVC, animated: false, completion: nil)
+        }
         IQKeyboardManager.sharedManager().enable = true
         IQKeyboardManager.sharedManager().shouldResignOnTouchOutside = true
-        UINavigationBar.appearance().backgroundColor = UIColor(red: 0.157, green: 0.682, blue: 0.992, alpha: 1.000)
+        UINavigationBar.appearance().barTintColor = UIColor(red: 0.157, green: 0.682, blue: 0.992, alpha: 1.000)
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor(), NSFontAttributeName : UIFont.boldSystemFontOfSize(18)]
+        SVProgressHUD.setBackgroundColor(UIColor(white: 0.000, alpha: 0.800))
+        SVProgressHUD.setForegroundColor(UIColor.whiteColor())
+
+
         return true
     }
 

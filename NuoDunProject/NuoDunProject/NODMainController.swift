@@ -8,11 +8,10 @@
 
 import UIKit
 
-class NODMainController: UITableViewController {
+class NODMainController: NODBaseMainViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.addLeftBarButtonWithImage(UIImage(named: "navbar-列表")!)
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false

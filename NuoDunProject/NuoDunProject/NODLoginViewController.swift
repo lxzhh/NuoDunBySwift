@@ -12,7 +12,7 @@ class NODLoginViewController: UIViewController {
 
     @IBOutlet weak var pwdTextField: UITextField!
     @IBOutlet weak var nameTextField: UITextField!
-      @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var loginButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -24,24 +24,14 @@ class NODLoginViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-  //"YYQ0-ZJND201502","MM":"13484265"
+    //"YYQ0-ZJND201502","MM":"13484265"
     @IBAction func loginAction(sender: AnyObject) {
-        NODSessionManager.sharedInstance.GET("APPLogin", parameters:["LoginID":nameTextField.text,"MM":pwdTextField.text], success: { (session: NSURLSessionDataTask!,responseObject: AnyObject!) -> Void in
-           
-            let data = responseObject as! NSData
-            let xml = SWXMLHash.parse(data)
-            let resultString :String? = xml["string"].element?.text
-            let user  = Mapper<LoginUser>().map(resultString!)
-            println("resultString:\(resultString) user \(user)")
-            if (user!.loginCode! == "1"){
-                user?.saveToPersistance()
+
+        NODSessionManager.sharedInstance.login(nameTextField.text, password: pwdTextField.text) { (loginSuccess : Bool) -> () in
+            if (loginSuccess){
                 self.dismissViewControllerAnimated(true, completion: nil)
             }
-            
-            }) { (session: NSURLSessionDataTask!,error: NSError!) -> Void in
-                println(error)
         }
-
     }
 
     /*

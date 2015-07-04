@@ -8,6 +8,12 @@
 
 import UIKit
 
+extension String{
+    func toCurrency() -> String{
+        return "￥\(self)"
+    }
+}
+
 class NODGlobal: NSObject {
     var currentUser : LoginUser?
 

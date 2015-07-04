@@ -9,7 +9,7 @@
 import UIKit
 
 class LoginUser: NSObject, Mappable, Printable, NSCoding {
-    
+    var loginId :String?
     var status: Bool?
     var loginCode: String?
     var userName: String?
@@ -42,7 +42,7 @@ class LoginUser: NSObject, Mappable, Printable, NSCoding {
         NSUserDefaults.standardUserDefaults().synchronize()
     }
     
-    func getStorageUser() -> LoginUser?{
+    class func getStorageUser() -> LoginUser?{
         let data = NSUserDefaults.standardUserDefaults().objectForKey("loginUser") as! NSData
         let user = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! LoginUser
         return user
@@ -53,6 +53,7 @@ class LoginUser: NSObject, Mappable, Printable, NSCoding {
     @objc required convenience init(coder decoder: NSCoder) {
         self.init()
         self.status = decoder.decodeBoolForKey("status")
+        self.loginId = decoder.decodeObjectForKey("loginId") as! String?
         self.loginCode = decoder.decodeObjectForKey("loginCode") as! String?
         self.userName = decoder.decodeObjectForKey("userName") as! String?
         self.projName = decoder.decodeObjectForKey("projName") as! String?
@@ -60,6 +61,7 @@ class LoginUser: NSObject, Mappable, Printable, NSCoding {
     
     @objc func encodeWithCoder(coder: NSCoder) {
         coder.encodeBool(self.status!, forKey: "status")
+        coder.encodeObject(self.loginId, forKey: "loginId")
         coder.encodeObject(self.loginCode, forKey: "loginCode")
         coder.encodeObject(self.userName, forKey: "userName")
         coder.encodeObject(self.projName, forKey: "projName")
