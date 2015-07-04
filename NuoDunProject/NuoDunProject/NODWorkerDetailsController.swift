@@ -53,12 +53,12 @@ class NODWorkerDetailsController: UITableViewController {
 
         actionSheet.rac_buttonClickedSignal().subscribeNext { (x) -> Void in
             let row = x as! Int
-//            switch row{
-//            case 1:{}
-//            case 2:{}
-//            case 3:{}
-//            default:{}
-//            }
+            let imagePicker =  UIImagePickerController()
+            imagePicker.rac_imageSelectedSignal().subscribeNext({ (x) -> Void in
+                
+            })
+            imagePicker.sourceType = .Camera
+            self.presentViewController(imagePicker, animated: true, completion: nil)
         }
         actionSheet.showInView(self.view.superview)
     }
