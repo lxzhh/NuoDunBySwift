@@ -28,21 +28,21 @@ PODS:
   - ReactiveCocoa/no-arc (2.5)
   - ReactiveCocoa/UI (2.5):
     - ReactiveCocoa/Core
-  - SLExpandableTableView (1.3.1)
   - SVProgressHUD (1.1.3)
+  - SVPullToRefresh (0.4.1)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.5.4)
   - IQKeyboardManager (~> 3.2.4)
   - ReactiveCocoa (~> 2.5)
-  - SLExpandableTableView (~> 1.3.1)
   - SVProgressHUD (~> 1.1.3)
+  - SVPullToRefresh (~> 0.4.1)
 
 SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
   IQKeyboardManager: 555b1231fefafb21b19278d7cca72986a27b748b
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
-  SLExpandableTableView: ff63a4bb4b71c6c3ae2b7cb1cde6a36c1645f23c
   SVProgressHUD: 748080e4f36e603f6c02aec292664239df5279c1
+  SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
 
 COCOAPODS: 0.37.2
