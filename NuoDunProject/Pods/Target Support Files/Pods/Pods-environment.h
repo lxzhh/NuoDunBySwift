@@ -78,15 +78,15 @@
 #define COCOAPODS_VERSION_MINOR_ReactiveCocoa_no_arc 5
 #define COCOAPODS_VERSION_PATCH_ReactiveCocoa_no_arc 0
 
-// SLExpandableTableView
-#define COCOAPODS_POD_AVAILABLE_SLExpandableTableView
-#define COCOAPODS_VERSION_MAJOR_SLExpandableTableView 1
-#define COCOAPODS_VERSION_MINOR_SLExpandableTableView 3
-#define COCOAPODS_VERSION_PATCH_SLExpandableTableView 1
-
 // SVProgressHUD
 #define COCOAPODS_POD_AVAILABLE_SVProgressHUD
 #define COCOAPODS_VERSION_MAJOR_SVProgressHUD 1
 #define COCOAPODS_VERSION_MINOR_SVProgressHUD 1
 #define COCOAPODS_VERSION_PATCH_SVProgressHUD 3
+
+// SVPullToRefresh
+#define COCOAPODS_POD_AVAILABLE_SVPullToRefresh
+#define COCOAPODS_VERSION_MAJOR_SVPullToRefresh 0
+#define COCOAPODS_VERSION_MINOR_SVPullToRefresh 4
+#define COCOAPODS_VERSION_PATCH_SVPullToRefresh 1
 

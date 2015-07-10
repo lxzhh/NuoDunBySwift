@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NODWorker: NSObject,Mappable  {
+class NODWorker: NSObject,Mappable, Printable  {
     var workCate : String?
     var entryDate : String?
     var basicSalary : Float?

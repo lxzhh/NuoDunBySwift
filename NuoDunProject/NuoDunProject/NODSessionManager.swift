@@ -142,4 +142,79 @@ class NODSessionManager: AFHTTPSessionManager {
         })
     }
     
+    
+    
+    func getContructionList(weekOffset : Int?, completion : (success :Bool?, list :Array<NODConstructionInfo>?) -> ()){
+        let user = LoginUser.loadSaved()!
+        self.GET("DisplayWorkLoadInWeek",
+            parameters:["LoginID":user.loginId!,
+                "XMZXH":weekOffset ?? 0],
+            success: { (session: NSURLSessionDataTask!,responseObject: AnyObject!) -> Void in
+                let data = responseObject as! NSData
+                let xml = SWXMLHash.parse(data)
+                let resultString :String? = xml["string"].element?.text
+                let jdata: NSData = resultString!.dataUsingEncoding(NSUTF8StringEncoding)!
+                let error : NSErrorPointer;
+                let json  = JSON(data: jdata)
+                let infoList  = Mapper<NODConstructionInfo>().mapArray(json["XM"].arrayObject)
+                println("resultString :\(resultString) \n ")
+                completion(success: true,
+                    list: infoList)
+                
+            },
+            failure :{ (session: NSURLSessionDataTask!,error: NSError!) -> Void in
+                println(error)
+        })
+    }
+    
+    func getContructionDetail(subprojId : String?, constructionDate :String?, completion : (success :Bool?, detail :NODConstructionDetail?) -> ()){
+        let user = LoginUser.loadSaved()!
+        self.GET("DisplayWorkInDay",
+            parameters:["ZXMBM":subprojId!,
+                "SGRQ":constructionDate!],
+            success: { (session: NSURLSessionDataTask!,responseObject: AnyObject!) -> Void in
+                let data = responseObject as! NSData
+                let xml = SWXMLHash.parse(data)
+                let resultString :String? = xml["string"].element?.text
+//                let jdata: NSData = resultString!.dataUsingEncoding(NSUTF8StringEncoding)!
+//                let error : NSErrorPointer;
+//                let json  = JSON(data: jdata)
+                let detail  = Mapper<NODConstructionDetail>().map(resultString!)
+                println("resultString :\(resultString) \n detail:\(detail)")
+                completion(success: true,
+                    detail: detail)
+                
+            },
+            failure :{ (session: NSURLSessionDataTask!,error: NSError!) -> Void in
+                println(error)
+        })
+    }
+    
+    
+    /**
+        revokeProj
+    */
+    func revokeProj(subprojCode : String?, completion : (success :Bool?, detail :NODConstructionDetail?) -> ()){
+        let user = LoginUser.loadSaved()!
+        self.GET("RevokeNewTask",
+            parameters:["LoginID":user.loginId!,
+                        "SGXH":subprojCode!],
+            success: { (session: NSURLSessionDataTask!,responseObject: AnyObject!) -> Void in
+                let data = responseObject as! NSData
+                let xml = SWXMLHash.parse(data)
+                let resultString :String? = xml["string"].element?.text
+                //                let jdata: NSData = resultString!.dataUsingEncoding(NSUTF8StringEncoding)!
+                //                let error : NSErrorPointer;
+                //                let json  = JSON(data: jdata)
+                let detail  = Mapper<NODConstructionDetail>().map(resultString!)
+                println("resultString :\(resultString) \n detail:\(detail)")
+                completion(success: true,
+                    detail: detail)
+                
+            },
+            failure :{ (session: NSURLSessionDataTask!,error: NSError!) -> Void in
+                println(error)
+        })
+    }
+    
 }

@@ -14,7 +14,6 @@
 		1A1BDA0A1B47CA3A0082941E /* NODLabourSectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A1BDA091B47CA3A0082941E /* NODLabourSectionCell.xib */; };
 		1A1BDA0C1B47CA9B0082941E /* NODLabourSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1BDA0B1B47CA9B0082941E /* NODLabourSectionCell.swift */; };
 		1A1BDA0E1B47FFE10082941E /* NODWorkerDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1BDA0D1B47FFE10082941E /* NODWorkerDetailsController.swift */; };
-		1A4BF0E91B478AE900145576 /* NODFinacialInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4BF0E81B478AE900145576 /* NODFinacialInfo.swift */; };
 		1AEEE2B91B3F97A100DDCD3C /* NODSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEEE2B81B3F97A100DDCD3C /* NODSettingViewController.swift */; };
 		1AEEE2BB1B3F99AD00DDCD3C /* NODBaseMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEEE2BA1B3F99AD00DDCD3C /* NODBaseMainViewController.swift */; };
 		1AEEE2C01B3F9EA100DDCD3C /* SlideMenuController+NODTrasition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEEE2BF1B3F9EA100DDCD3C /* SlideMenuController+NODTrasition.swift */; };
@@ -44,7 +43,6 @@
 		7E3902871B369CBC0061DD90 /* CALayer+XibConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E3902861B369CBC0061DD90 /* CALayer+XibConfiguration.m */; };
 		7E3902891B369D630061DD90 /* NODLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3902881B369D630061DD90 /* NODLoginViewController.swift */; };
 		7E39028C1B36D2DC0061DD90 /* NODUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E39028B1B36D2DC0061DD90 /* NODUserViewController.swift */; };
-		7E39028E1B36D3F20061DD90 /* NODMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E39028D1B36D3F20061DD90 /* NODMainController.swift */; };
 		7E904FED1B3583DA007BD238 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E904FEC1B3583DA007BD238 /* AppDelegate.swift */; };
 		7E904FEF1B3583DA007BD238 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E904FEE1B3583DA007BD238 /* ViewController.swift */; };
 		7E904FF41B3583DA007BD238 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E904FF31B3583DA007BD238 /* Images.xcassets */; };
@@ -52,6 +50,12 @@
 		7EADDCDF1B37BC260095EDF8 /* NODMainMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EADDCDD1B37BC260095EDF8 /* NODMainMenuCell.swift */; };
 		7EADDCE01B37BC260095EDF8 /* NODMainMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EADDCDE1B37BC260095EDF8 /* NODMainMenuCell.xib */; };
 		981DD26DD522DC8DFC25D57B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E7BC14177D1364B0BD8378F /* libPods.a */; };
+		A90292431B48E23600A82E90 /* NODConstructionDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90292421B48E23600A82E90 /* NODConstructionDetailController.swift */; };
+		A91230171B48B64F00BCCEBF /* NODFinacialInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91230161B48B64F00BCCEBF /* NODFinacialInfo.swift */; };
+		A91230191B48BADD00BCCEBF /* NODConstructionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91230181B48BADD00BCCEBF /* NODConstructionController.swift */; };
+		A912301B1B48BF5400BCCEBF /* NODConstructionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A912301A1B48BF5400BCCEBF /* NODConstructionInfo.swift */; };
+		A92CBDDC1B48D73A004E4D52 /* NODContructionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92CBDDB1B48D73A004E4D52 /* NODContructionCell.swift */; };
+		A94BDC0C1B494DF2008560B5 /* NODConstructionDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94BDC0B1B494DF2008560B5 /* NODConstructionDetail.swift */; };
 		A9984D771B3EEF38007118D9 /* NODGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9984D761B3EEF38007118D9 /* NODGlobal.swift */; };
 /* End PBXBuildFile section */
 
@@ -63,7 +67,6 @@
 		1A1BDA091B47CA3A0082941E /* NODLabourSectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NODLabourSectionCell.xib; sourceTree = "<group>"; };
 		1A1BDA0B1B47CA9B0082941E /* NODLabourSectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NODLabourSectionCell.swift; sourceTree = "<group>"; };
 		1A1BDA0D1B47FFE10082941E /* NODWorkerDetailsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NODWorkerDetailsController.swift; sourceTree = "<group>"; };
-		1A4BF0E81B478AE900145576 /* NODFinacialInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NODFinacialInfo.swift; sourceTree = "<group>"; };
 		1AEEE2B81B3F97A100DDCD3C /* NODSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NODSettingViewController.swift; sourceTree = "<group>"; };
 		1AEEE2BA1B3F99AD00DDCD3C /* NODBaseMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NODBaseMainViewController.swift; sourceTree = "<group>"; };
 		1AEEE2BF1B3F9EA100DDCD3C /* SlideMenuController+NODTrasition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SlideMenuController+NODTrasition.swift"; sourceTree = "<group>"; };
@@ -96,7 +99,6 @@
 		7E3902861B369CBC0061DD90 /* CALayer+XibConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+XibConfiguration.m"; sourceTree = "<group>"; };
 		7E3902881B369D630061DD90 /* NODLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NODLoginViewController.swift; sourceTree = "<group>"; };
 		7E39028B1B36D2DC0061DD90 /* NODUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NODUserViewController.swift; sourceTree = "<group>"; };
-		7E39028D1B36D3F20061DD90 /* NODMainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NODMainController.swift; sourceTree = "<group>"; };
 		7E904FE71B3583DA007BD238 /* NuoDunProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NuoDunProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E904FEB1B3583DA007BD238 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7E904FEC1B3583DA007BD238 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -109,6 +111,12 @@
 		7EADDCDD1B37BC260095EDF8 /* NODMainMenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NODMainMenuCell.swift; sourceTree = "<group>"; };
 		7EADDCDE1B37BC260095EDF8 /* NODMainMenuCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NODMainMenuCell.xib; sourceTree = "<group>"; };
 		9E7BC14177D1364B0BD8378F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A90292421B48E23600A82E90 /* NODConstructionDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NODConstructionDetailController.swift; sourceTree = "<group>"; };
+		A91230161B48B64F00BCCEBF /* NODFinacialInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NODFinacialInfo.swift; sourceTree = "<group>"; };
+		A91230181B48BADD00BCCEBF /* NODConstructionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NODConstructionController.swift; sourceTree = "<group>"; };
+		A912301A1B48BF5400BCCEBF /* NODConstructionInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NODConstructionInfo.swift; sourceTree = "<group>"; };
+		A92CBDDB1B48D73A004E4D52 /* NODContructionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NODContructionCell.swift; sourceTree = "<group>"; };
+		A94BDC0B1B494DF2008560B5 /* NODConstructionDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NODConstructionDetail.swift; sourceTree = "<group>"; };
 		A9984D761B3EEF38007118D9 /* NODGlobal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NODGlobal.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -142,10 +150,11 @@
 			isa = PBXGroup;
 			children = (
 				1AEEE2BA1B3F99AD00DDCD3C /* NODBaseMainViewController.swift */,
-				7E39028D1B36D3F20061DD90 /* NODMainController.swift */,
 				1AEEE2B81B3F97A100DDCD3C /* NODSettingViewController.swift */,
 				1AEEE2C91B3FE60F00DDCD3C /* NODFiancialController.swift */,
 				1A1BDA051B47BFCE0082941E /* NODLabourController.swift */,
+				A91230181B48BADD00BCCEBF /* NODConstructionController.swift */,
+				1AEEE2BF1B3F9EA100DDCD3C /* SlideMenuController+NODTrasition.swift */,
 			);
 			name = MainControllers;
 			sourceTree = "<group>";
@@ -173,9 +182,11 @@
 			isa = PBXGroup;
 			children = (
 				7E39025C1B366DAA0061DD90 /* LoginUser.swift */,
-				1A4BF0E81B478AE900145576 /* NODFinacialInfo.swift */,
 				1A1BDA071B47C5270082941E /* NODLabour.swift */,
 				1AFF89221B480B1300B81AFA /* NODWorker.swift */,
+				A91230161B48B64F00BCCEBF /* NODFinacialInfo.swift */,
+				A912301A1B48BF5400BCCEBF /* NODConstructionInfo.swift */,
+				A94BDC0B1B494DF2008560B5 /* NODConstructionDetail.swift */,
 			);
 			name = models;
 			sourceTree = "<group>";
@@ -211,6 +222,7 @@
 				1A1BDA031B47A49B0082941E /* NODPersionalFiancialCell.swift */,
 				1A1BDA0B1B47CA9B0082941E /* NODLabourSectionCell.swift */,
 				1A1BDA091B47CA3A0082941E /* NODLabourSectionCell.xib */,
+				A92CBDDB1B48D73A004E4D52 /* NODContructionCell.swift */,
 			);
 			name = customViews;
 			sourceTree = "<group>";
@@ -222,9 +234,9 @@
 				7E3902881B369D630061DD90 /* NODLoginViewController.swift */,
 				7E904FEE1B3583DA007BD238 /* ViewController.swift */,
 				7E39028B1B36D2DC0061DD90 /* NODUserViewController.swift */,
-				1AEEE2BF1B3F9EA100DDCD3C /* SlideMenuController+NODTrasition.swift */,
 				1A1BDA011B479F660082941E /* NODPersonalFinacialController.swift */,
 				1A1BDA0D1B47FFE10082941E /* NODWorkerDetailsController.swift */,
+				A90292421B48E23600A82E90 /* NODConstructionDetailController.swift */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -405,9 +417,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7E39028E1B36D3F20061DD90 /* NODMainController.swift in Sources */,
+				A92CBDDC1B48D73A004E4D52 /* NODContructionCell.swift in Sources */,
 				1A1BDA0E1B47FFE10082941E /* NODWorkerDetailsController.swift in Sources */,
 				1AEEE2CC1B3FEFEF00DDCD3C /* NODFinancialCell.swift in Sources */,
+				A94BDC0C1B494DF2008560B5 /* NODConstructionDetail.swift in Sources */,
 				1AEEE2B91B3F97A100DDCD3C /* NODSettingViewController.swift in Sources */,
 				7E39027C1B366F1F0061DD90 /* ISO8601DateTransform.swift in Sources */,
 				7E3902791B366F1F0061DD90 /* DateFormaterTransform.swift in Sources */,
@@ -421,7 +434,7 @@
 				7E39027B1B366F1F0061DD90 /* EnumTransform.swift in Sources */,
 				7E3902591B366D560061DD90 /* Mapper.swift in Sources */,
 				1A1BDA021B479F660082941E /* NODPersonalFinacialController.swift in Sources */,
-				1A4BF0E91B478AE900145576 /* NODFinacialInfo.swift in Sources */,
+				A91230171B48B64F00BCCEBF /* NODFinacialInfo.swift in Sources */,
 				1A1BDA061B47BFCE0082941E /* NODLabourController.swift in Sources */,
 				A9984D771B3EEF38007118D9 /* NODGlobal.swift in Sources */,
 				7EADDCDF1B37BC260095EDF8 /* NODMainMenuCell.swift in Sources */,
@@ -430,6 +443,8 @@
 				7E39027A1B366F1F0061DD90 /* DateTransform.swift in Sources */,
 				7E9050121B35970E007BD238 /* NODSessionManager.swift in Sources */,
 				7E39025B1B366D560061DD90 /* ToJSON.swift in Sources */,
+				A912301B1B48BF5400BCCEBF /* NODConstructionInfo.swift in Sources */,
+				A91230191B48BADD00BCCEBF /* NODConstructionController.swift in Sources */,
 				7E39028C1B36D2DC0061DD90 /* NODUserViewController.swift in Sources */,
 				1A1BDA081B47C5270082941E /* NODLabour.swift in Sources */,
 				7E3902871B369CBC0061DD90 /* CALayer+XibConfiguration.m in Sources */,
@@ -439,6 +454,7 @@
 				1AFF89231B480B1300B81AFA /* NODWorker.swift in Sources */,
 				7E39027E1B366F1F0061DD90 /* TransformType.swift in Sources */,
 				1AEEE2C01B3F9EA100DDCD3C /* SlideMenuController+NODTrasition.swift in Sources */,
+				A90292431B48E23600A82E90 /* NODConstructionDetailController.swift in Sources */,
 				7E39027D1B366F1F0061DD90 /* TransformOf.swift in Sources */,
 				7E904FED1B3583DA007BD238 /* AppDelegate.swift in Sources */,
 				7E3902581B366D560061DD90 /* FromJSON.swift in Sources */,

@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         let userVC :NODUserViewController = UIStoryboard(name: "NODStoryboard", bundle: nil).instantiateViewControllerWithIdentifier("NODUserViewController") as! NODUserViewController
         
-        let mainVC :NODMainController = UIStoryboard(name: "NODStoryboard", bundle: nil).instantiateViewControllerWithIdentifier("NODMainController") as! NODMainController
+        let mainVC :NODConstructionController = UIStoryboard(name: "NODStoryboard", bundle: nil).instantiateViewControllerWithIdentifier("NODConstructionController") as! NODConstructionController
         let mainNavVC = UINavigationController(rootViewController: mainVC)
         let slideMenuController = SlideMenuController(mainViewController: mainNavVC, leftMenuViewController: userVC)
         self.window?.rootViewController = slideMenuController
@@ -30,6 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.sharedManager().enable = true
         IQKeyboardManager.sharedManager().shouldResignOnTouchOutside = true
         UINavigationBar.appearance().barTintColor = UIColor(red: 0.157, green: 0.682, blue: 0.992, alpha: 1.000)
+        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor(), NSFontAttributeName : UIFont.boldSystemFontOfSize(18)]
         SVProgressHUD.setBackgroundColor(UIColor(white: 0.000, alpha: 0.800))
         SVProgressHUD.setForegroundColor(UIColor.whiteColor())

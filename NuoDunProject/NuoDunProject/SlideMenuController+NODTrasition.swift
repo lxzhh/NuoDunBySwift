@@ -8,7 +8,7 @@
 
 import Foundation
 enum NODSlideMainViewType : String{
-    case NODSlideMainViewTypeHome = "NODMainController"
+    case NODSlideMainViewTypeHome = "NODConstructionController"
     case NODSlideMainViewTypeFinacial = "NODFiancialController"
     case NODSlideMainViewTypeLabour = "NODLabourController"
     case NODSlideMainViewTypeSetting = "NODSettingVC"
