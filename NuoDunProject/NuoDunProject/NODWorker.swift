@@ -9,6 +9,7 @@
 import UIKit
 
 class NODWorker: NSObject,Mappable, Printable  {
+    var groupId : String?
     var workCate : String?
     var entryDate : String?
     var basicSalary : Float?
@@ -33,6 +34,7 @@ class NODWorker: NSObject,Mappable, Printable  {
     
     // Mappable
     func mapping(map: Map) {
+        groupId <- map["BZBM"]
         workCate <- map["BZMC"]
         entryDate <- map["RZRQ"]
         basicSalary <- map["JBGZ"]
@@ -45,7 +47,6 @@ class NODWorker: NSObject,Mappable, Printable  {
         bankName <- map["KHH"]
         identityNumber <- map["SFZH"]
         gender <- map["XB"]
-        
         stateCode <- map["GRZTMC"]
         address <- map["JZD"]
 
@@ -55,4 +56,6 @@ class NODWorker: NSObject,Mappable, Printable  {
             return "workerName:\(workerName) \n  bankName:\(bankName)"
         }
     }
+    
+   
 }

@@ -2,7 +2,7 @@
 //  NODGlobal.swift
 //  NuoDunProject
 //
-//  Created by 乐星宇 on 15/6/27.
+//  Created by lxzhh on 15/6/27.
 //  Copyright (c) 2015年 lxzhh. All rights reserved.
 //
 

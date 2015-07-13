@@ -119,12 +119,16 @@ class NODLabourController: NODBaseMainViewController {
     
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let workerDetail =  segue.destinationViewController as! NODWorkerDetailsController
-        let cell = sender as? UITableViewCell
-        let indexPath = self.tableView.indexPathForCell(cell!)!
-        let category = self.labourCateList?[indexPath.section]
-        let info = category?.labourList?[indexPath.row]
-        workerDetail.workId = info?.labourId
+        if(segue.identifier == "CreateNew"){
+            
+        }else{
+            let workerDetail =  segue.destinationViewController as! NODWorkerDetailsController
+            let cell = sender as? UITableViewCell
+            let indexPath = self.tableView.indexPathForCell(cell!)!
+            let category = self.labourCateList?[indexPath.section]
+            let info = category?.labourList?[indexPath.row]
+            workerDetail.workId = info?.labourId
+        }
     }
 
 

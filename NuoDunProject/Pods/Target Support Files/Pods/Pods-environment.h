@@ -48,6 +48,12 @@
 #define COCOAPODS_VERSION_MINOR_AFNetworking_UIKit 5
 #define COCOAPODS_VERSION_PATCH_AFNetworking_UIKit 4
 
+// ActionSheetPicker-3.0
+#define COCOAPODS_POD_AVAILABLE_ActionSheetPicker_3_0
+#define COCOAPODS_VERSION_MAJOR_ActionSheetPicker_3_0 1
+#define COCOAPODS_VERSION_MINOR_ActionSheetPicker_3_0 6
+#define COCOAPODS_VERSION_PATCH_ActionSheetPicker_3_0 2
+
 // IQKeyboardManager
 #define COCOAPODS_POD_AVAILABLE_IQKeyboardManager
 #define COCOAPODS_VERSION_MAJOR_IQKeyboardManager 3
@@ -77,6 +83,12 @@
 #define COCOAPODS_VERSION_MAJOR_ReactiveCocoa_no_arc 2
 #define COCOAPODS_VERSION_MINOR_ReactiveCocoa_no_arc 5
 #define COCOAPODS_VERSION_PATCH_ReactiveCocoa_no_arc 0
+
+// SOAPEngine
+#define COCOAPODS_POD_AVAILABLE_SOAPEngine
+#define COCOAPODS_VERSION_MAJOR_SOAPEngine 1
+#define COCOAPODS_VERSION_MINOR_SOAPEngine 21
+#define COCOAPODS_VERSION_PATCH_SOAPEngine 0
 
 // SVProgressHUD
 #define COCOAPODS_POD_AVAILABLE_SVProgressHUD

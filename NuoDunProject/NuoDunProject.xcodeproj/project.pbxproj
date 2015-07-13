@@ -56,6 +56,16 @@
 		A912301B1B48BF5400BCCEBF /* NODConstructionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A912301A1B48BF5400BCCEBF /* NODConstructionInfo.swift */; };
 		A92CBDDC1B48D73A004E4D52 /* NODContructionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92CBDDB1B48D73A004E4D52 /* NODContructionCell.swift */; };
 		A94BDC0C1B494DF2008560B5 /* NODConstructionDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94BDC0B1B494DF2008560B5 /* NODConstructionDetail.swift */; };
+		A95FF2241B5414F300AD747A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A95FF2231B5414F300AD747A /* Security.framework */; };
+		A95FF2261B54150300AD747A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A95FF2251B54150300AD747A /* SystemConfiguration.framework */; };
+		A95FF2281B54150B00AD747A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A95FF2271B54150B00AD747A /* CoreGraphics.framework */; };
+		A95FF22A1B54151500AD747A /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A95FF2291B54151500AD747A /* MobileCoreServices.framework */; };
+		A96967281B53F924000EC3A4 /* NODLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96967271B53F924000EC3A4 /* NODLocation.swift */; };
+		A969672A1B53FA30000EC3A4 /* NODSubproj.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96967291B53FA30000EC3A4 /* NODSubproj.swift */; };
+		A969672C1B53FB0F000EC3A4 /* NODWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = A969672B1B53FB0F000EC3A4 /* NODWeather.swift */; };
+		A969672E1B53FBB4000EC3A4 /* NODObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A969672D1B53FBB4000EC3A4 /* NODObject.swift */; };
+		A97362471B50C5900052567E /* NODCreateNewUserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97362461B50C5900052567E /* NODCreateNewUserController.swift */; };
+		A97461FB1B51507400CCEA2A /* NODGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97461FA1B51507400CCEA2A /* NODGroup.swift */; };
 		A9984D771B3EEF38007118D9 /* NODGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9984D761B3EEF38007118D9 /* NODGlobal.swift */; };
 /* End PBXBuildFile section */
 
@@ -117,6 +127,16 @@
 		A912301A1B48BF5400BCCEBF /* NODConstructionInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NODConstructionInfo.swift; sourceTree = "<group>"; };
 		A92CBDDB1B48D73A004E4D52 /* NODContructionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NODContructionCell.swift; sourceTree = "<group>"; };
 		A94BDC0B1B494DF2008560B5 /* NODConstructionDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NODConstructionDetail.swift; sourceTree = "<group>"; };
+		A95FF2231B5414F300AD747A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		A95FF2251B54150300AD747A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		A95FF2271B54150B00AD747A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		A95FF2291B54151500AD747A /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		A96967271B53F924000EC3A4 /* NODLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NODLocation.swift; sourceTree = "<group>"; };
+		A96967291B53FA30000EC3A4 /* NODSubproj.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NODSubproj.swift; sourceTree = "<group>"; };
+		A969672B1B53FB0F000EC3A4 /* NODWeather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NODWeather.swift; sourceTree = "<group>"; };
+		A969672D1B53FBB4000EC3A4 /* NODObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NODObject.swift; sourceTree = "<group>"; };
+		A97362461B50C5900052567E /* NODCreateNewUserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NODCreateNewUserController.swift; sourceTree = "<group>"; };
+		A97461FA1B51507400CCEA2A /* NODGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NODGroup.swift; sourceTree = "<group>"; };
 		A9984D761B3EEF38007118D9 /* NODGlobal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NODGlobal.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -125,7 +145,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A95FF2261B54150300AD747A /* SystemConfiguration.framework in Frameworks */,
 				1AEEE2C61B3FA49900DDCD3C /* QuartzCore.framework in Frameworks */,
+				A95FF22A1B54151500AD747A /* MobileCoreServices.framework in Frameworks */,
+				A95FF2281B54150B00AD747A /* CoreGraphics.framework in Frameworks */,
+				A95FF2241B5414F300AD747A /* Security.framework in Frameworks */,
 				1AEEE2C41B3FA48600DDCD3C /* libz.dylib in Frameworks */,
 				1AEEE2C21B3FA46000DDCD3C /* CFNetwork.framework in Frameworks */,
 				981DD26DD522DC8DFC25D57B /* libPods.a in Frameworks */,
@@ -138,6 +162,10 @@
 		0D5A7F4599DD15B247B93FA3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A95FF2291B54151500AD747A /* MobileCoreServices.framework */,
+				A95FF2271B54150B00AD747A /* CoreGraphics.framework */,
+				A95FF2251B54150300AD747A /* SystemConfiguration.framework */,
+				A95FF2231B5414F300AD747A /* Security.framework */,
 				1AEEE2C51B3FA49900DDCD3C /* QuartzCore.framework */,
 				1AEEE2C31B3FA48600DDCD3C /* libz.dylib */,
 				1AEEE2C11B3FA46000DDCD3C /* CFNetwork.framework */,
@@ -181,6 +209,7 @@
 		7E3902501B366BA00061DD90 /* models */ = {
 			isa = PBXGroup;
 			children = (
+				A969672F1B53FBBC000EC3A4 /* NODObject */,
 				7E39025C1B366DAA0061DD90 /* LoginUser.swift */,
 				1A1BDA071B47C5270082941E /* NODLabour.swift */,
 				1AFF89221B480B1300B81AFA /* NODWorker.swift */,
@@ -237,6 +266,7 @@
 				1A1BDA011B479F660082941E /* NODPersonalFinacialController.swift */,
 				1A1BDA0D1B47FFE10082941E /* NODWorkerDetailsController.swift */,
 				A90292421B48E23600A82E90 /* NODConstructionDetailController.swift */,
+				A97362461B50C5900052567E /* NODCreateNewUserController.swift */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -300,6 +330,18 @@
 				7E9050011B3583DB007BD238 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A969672F1B53FBBC000EC3A4 /* NODObject */ = {
+			isa = PBXGroup;
+			children = (
+				A969672D1B53FBB4000EC3A4 /* NODObject.swift */,
+				A97461FA1B51507400CCEA2A /* NODGroup.swift */,
+				A96967271B53F924000EC3A4 /* NODLocation.swift */,
+				A96967291B53FA30000EC3A4 /* NODSubproj.swift */,
+				A969672B1B53FB0F000EC3A4 /* NODWeather.swift */,
+			);
+			name = NODObject;
 			sourceTree = "<group>";
 		};
 		AE63AFDC83CE310BFFBB60BD /* Pods */ = {
@@ -419,6 +461,7 @@
 			files = (
 				A92CBDDC1B48D73A004E4D52 /* NODContructionCell.swift in Sources */,
 				1A1BDA0E1B47FFE10082941E /* NODWorkerDetailsController.swift in Sources */,
+				A969672E1B53FBB4000EC3A4 /* NODObject.swift in Sources */,
 				1AEEE2CC1B3FEFEF00DDCD3C /* NODFinancialCell.swift in Sources */,
 				A94BDC0C1B494DF2008560B5 /* NODConstructionDetail.swift in Sources */,
 				1AEEE2B91B3F97A100DDCD3C /* NODSettingViewController.swift in Sources */,
@@ -431,8 +474,10 @@
 				7E39025A1B366D560061DD90 /* Operators.swift in Sources */,
 				7E3902781B366F1F0061DD90 /* CustomDateFormatTransform.swift in Sources */,
 				7E39024A1B3664A00061DD90 /* SWXMLHash.swift in Sources */,
+				A97362471B50C5900052567E /* NODCreateNewUserController.swift in Sources */,
 				7E39027B1B366F1F0061DD90 /* EnumTransform.swift in Sources */,
 				7E3902591B366D560061DD90 /* Mapper.swift in Sources */,
+				A96967281B53F924000EC3A4 /* NODLocation.swift in Sources */,
 				1A1BDA021B479F660082941E /* NODPersonalFinacialController.swift in Sources */,
 				A91230171B48B64F00BCCEBF /* NODFinacialInfo.swift in Sources */,
 				1A1BDA061B47BFCE0082941E /* NODLabourController.swift in Sources */,
@@ -450,10 +495,13 @@
 				7E3902871B369CBC0061DD90 /* CALayer+XibConfiguration.m in Sources */,
 				7E3902811B3690CA0061DD90 /* SlideMenuController.swift in Sources */,
 				7E39025D1B366DAA0061DD90 /* LoginUser.swift in Sources */,
+				A969672A1B53FA30000EC3A4 /* NODSubproj.swift in Sources */,
 				7E39024F1B3668FA0061DD90 /* SwiftyJSON.swift in Sources */,
+				A97461FB1B51507400CCEA2A /* NODGroup.swift in Sources */,
 				1AFF89231B480B1300B81AFA /* NODWorker.swift in Sources */,
 				7E39027E1B366F1F0061DD90 /* TransformType.swift in Sources */,
 				1AEEE2C01B3F9EA100DDCD3C /* SlideMenuController+NODTrasition.swift in Sources */,
+				A969672C1B53FB0F000EC3A4 /* NODWeather.swift in Sources */,
 				A90292431B48E23600A82E90 /* NODConstructionDetailController.swift in Sources */,
 				7E39027D1B366F1F0061DD90 /* TransformOf.swift in Sources */,
 				7E904FED1B3583DA007BD238 /* AppDelegate.swift in Sources */,
@@ -467,6 +515,7 @@
 /* Begin XCBuildConfiguration section */
 		7E9050041B3583DB007BD238 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3EF6B6C4A419E33652599CB6 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -509,6 +558,7 @@
 		};
 		7E9050051B3583DB007BD238 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 60B21C26AD2B275F0989B3E1 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -547,7 +597,10 @@
 			baseConfigurationReference = 3EF6B6C4A419E33652599CB6 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				FRAMEWORK_SEARCH_PATHS = "$(SYSTEM_APPS_DIR)/Reveal.app/Contents/SharedSupport/iOS-Libraries";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SYSTEM_APPS_DIR)/Reveal.app/Contents/SharedSupport/iOS-Libraries",
+				);
 				INFOPLIST_FILE = NuoDunProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -578,7 +631,10 @@
 			baseConfigurationReference = 60B21C26AD2B275F0989B3E1 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				FRAMEWORK_SEARCH_PATHS = "$(SYSTEM_APPS_DIR)/Reveal.app/Contents/SharedSupport/iOS-Libraries";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SYSTEM_APPS_DIR)/Reveal.app/Contents/SharedSupport/iOS-Libraries",
+				);
 				INFOPLIST_FILE = NuoDunProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

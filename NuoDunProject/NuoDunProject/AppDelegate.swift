@@ -34,7 +34,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor(), NSFontAttributeName : UIFont.boldSystemFontOfSize(18)]
         SVProgressHUD.setBackgroundColor(UIColor(white: 0.000, alpha: 0.800))
         SVProgressHUD.setForegroundColor(UIColor.whiteColor())
-
+        NODSessionManager.sharedInstance.QueryGroup { (success, groups) -> () in
+            
+        }
 
         return true
     }

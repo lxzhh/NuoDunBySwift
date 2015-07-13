@@ -33,6 +33,7 @@ class NODSessionManager: AFHTTPSessionManager {
             println("resultString:\(resultString) user \(user)")
             if (user!.loginCode! == "1"){
                 user?.saveToPersistance()
+                NSNotificationCenter.defaultCenter().postNotificationName("loginNotification", object: nil)
                 completion(true)
             }
             
@@ -217,4 +218,65 @@ class NODSessionManager: AFHTTPSessionManager {
         })
     }
     
+    
+    
+    func QueryGroup(completion : (success : Bool, groups: Array<NODGroup>?)->()){
+        self.GET("QueryGroup",
+            parameters:nil,
+            success: { (session: NSURLSessionDataTask!,responseObject: AnyObject!) -> Void in
+                let data = responseObject as! NSData
+                let xml = SWXMLHash.parse(data)
+                let resultString :String? = xml["string"].element?.text
+                NODGroup.saveToLocal(resultString!)
+                let jdata: NSData = resultString!.dataUsingEncoding(NSUTF8StringEncoding)!
+                let error : NSErrorPointer;
+                let json  = JSON(data: jdata)
+                let groups  = json.arrayObject as! [NODGroup]?
+                println("QueryGroup resultString :\(resultString) \n detail:\(groups)")
+                completion(success: true,
+                    groups: groups)
+                
+            },
+            failure :{ (session: NSURLSessionDataTask!,error: NSError!) -> Void in
+                println(error)
+        })
+    }
+    
+    
+    func createNewWorker(worker :NODWorker, completion:(success :Bool)-> ()){
+        let user = LoginUser.loadSaved()!
+        let mapper = Mapper().toJSONString(worker, prettyPrint: false)
+        let dictionary  = ["XGR" : mapper!]
+        let json = JSON(dictionary).rawString(encoding: NSUTF8StringEncoding, options: NSJSONWritingOptions(rawValue: 0))
+        
+        let postString =  "<v:Envelope xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:d=\"http://www.w3.org/2001/XMLSchema\" xmlns:c=\"http://www.w3.org/2003/05/soap-encoding\" xmlns:v=\"http://www.w3.org/2003/05/soap-envelope\"><v:Header /><v:Body><NewWorker xmlns=\"http://tempuri.org/\" id=\"o0\" c:root=\"1\"><LoginID i:type=\"d:string\">\(user.loginId!)</LoginID><GRSC i:type=\"d:string\">\(json)</GRSC></NewWorker></v:Body></v:Envelope>"
+        println("create new worker \(worker) theJSONText:\(json!)")
+        self.POST("NewWorker", parameters:postString, success: { (session: NSURLSessionDataTask!, response :AnyObject!) -> Void in
+            
+            }, failure :{ (session: NSURLSessionDataTask!,error: NSError!) -> Void in
+            println(error)
+        })
+    }
+    
+    func QueryLocation(completion : (success : Bool, groups: Array<NODLocation>?)->()){
+        self.GET("QueryGroup",
+            parameters:nil,
+            success: { (session: NSURLSessionDataTask!,responseObject: AnyObject!) -> Void in
+                let data = responseObject as! NSData
+                let xml = SWXMLHash.parse(data)
+                let resultString :String? = xml["string"].element?.text
+                NODLocation.saveToLocal(resultString!)
+                let jdata: NSData = resultString!.dataUsingEncoding(NSUTF8StringEncoding)!
+                let error : NSErrorPointer;
+                let json  = JSON(data: jdata)
+                let groups  = json.arrayObject as! [NODLocation]?
+                println("QueryGroup resultString :\(resultString) \n detail:\(groups)")
+                completion(success: true,
+                    groups: groups)
+                
+            },
+            failure :{ (session: NSURLSessionDataTask!,error: NSError!) -> Void in
+                println(error)
+        })
+    }
 }

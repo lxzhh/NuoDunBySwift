@@ -2,7 +2,7 @@
 //  NODConstructionController.swift
 //  NuoDunProject
 //
-//  Created by 乐星宇 on 15/7/5.
+//  Created by lxzhh on 15/7/5.
 //  Copyright (c) 2015年 lxzhh. All rights reserved.
 //
 
@@ -12,26 +12,38 @@ class NODConstructionController: NODBaseMainViewController {
     
     @IBOutlet weak var projNameLabel: UILabel!
     var contructionList : Array<NODConstructionInfo>?
+    
+    func loadData(){
+        if((LoginUser.loadSaved()) != nil){
+            projNameLabel.text = LoginUser.loadSaved()?.projName
+            NODSessionManager.sharedInstance.getContructionList(2, completion: { (success, list) -> () in
+                self.contructionList = list
+                self.tableView.reloadData()
+            })
+            
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.registerNib(UINib(nibName: "NODLabourSectionCell", bundle: nil), forHeaderFooterViewReuseIdentifier: "NODLabourSectionCell")
-        projNameLabel.text = LoginUser.loadSaved()?.projName
-        NODSessionManager.sharedInstance.getContructionList(2, completion: { (success, list) -> () in
-            self.contructionList = list
-            self.tableView.reloadData()
-        })
+    
         self.refreshControl?.rac_signalForControlEvents(UIControlEvents.ValueChanged).subscribeNext({  [weak self] (x) -> Void in
             if let strongSelf = self{
                 strongSelf.refreshControl?.endRefreshing()
             }
-        })
-        
+            })
         self.tableView.addInfiniteScrollingWithActionHandler { [weak self]() -> Void in
             if let strongSelf = self{
                 strongSelf.tableView.infiniteScrollingView.stopAnimating()
             }
         }
         self.tableView.tableFooterView = UIView()
+        self.loadData()
+        NSNotificationCenter.defaultCenter().rac_addObserverForName("loginNotification", object: nil).subscribeNext { (o : AnyObject!) -> Void in
+            self.loadData()
+        }
+    
     }
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView(frame: CGRectMake(0, 0, tableView.frame.size.width, 60))
