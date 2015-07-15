@@ -1,16 +1,16 @@
 //
-//  NODWeather.swift
+//  NODMachine.swift
 //  NuoDunProject
 //
-//  Created by 乐星宇 on 15/7/13.
+//  Created by lxzhh on 15/7/14.
 //  Copyright (c) 2015年 lxzhh. All rights reserved.
 //
 
 import UIKit
 
-class NODWeather: NODObject  {
-    var weatherName : String?
-    var weatherID : String?
+class NODMachine: NODObject {
+    var machineName : String?
+    var machineID : String?
     
     required init?(_ map: Map) {
         super.init()
@@ -19,17 +19,17 @@ class NODWeather: NODObject  {
     
     // Mappable
     override func mapping(map: Map) {
-        weatherName <- map["TQMC"]
-        weatherID <- map["TQBM"]
+        machineName <- map["JJMC"]
+        machineID <- map["JJBM"]
         
     }
     override var description: String {
         get{
-            return "weatherName:\(weatherName) \n  weatherID:\(weatherID)"
+            return "machineName:\(machineName) \n  machineID:\(machineID)"
         }
     }
     
     override class func loadJsonRootKey() -> String?{
-        return "TQ"
+        return "JJ"
     }
 }

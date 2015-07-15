@@ -43,6 +43,8 @@
 		7E3902871B369CBC0061DD90 /* CALayer+XibConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E3902861B369CBC0061DD90 /* CALayer+XibConfiguration.m */; };
 		7E3902891B369D630061DD90 /* NODLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3902881B369D630061DD90 /* NODLoginViewController.swift */; };
 		7E39028C1B36D2DC0061DD90 /* NODUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E39028B1B36D2DC0061DD90 /* NODUserViewController.swift */; };
+		7E60CD3D1B5563AB00D60F3D /* NODMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E60CD3C1B5563AB00D60F3D /* NODMachine.swift */; };
+		7E60CD3F1B55647700D60F3D /* NODMaterial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E60CD3E1B55647700D60F3D /* NODMaterial.swift */; };
 		7E904FED1B3583DA007BD238 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E904FEC1B3583DA007BD238 /* AppDelegate.swift */; };
 		7E904FEF1B3583DA007BD238 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E904FEE1B3583DA007BD238 /* ViewController.swift */; };
 		7E904FF41B3583DA007BD238 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E904FF31B3583DA007BD238 /* Images.xcassets */; };
@@ -109,6 +111,8 @@
 		7E3902861B369CBC0061DD90 /* CALayer+XibConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+XibConfiguration.m"; sourceTree = "<group>"; };
 		7E3902881B369D630061DD90 /* NODLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NODLoginViewController.swift; sourceTree = "<group>"; };
 		7E39028B1B36D2DC0061DD90 /* NODUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NODUserViewController.swift; sourceTree = "<group>"; };
+		7E60CD3C1B5563AB00D60F3D /* NODMachine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NODMachine.swift; sourceTree = "<group>"; };
+		7E60CD3E1B55647700D60F3D /* NODMaterial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NODMaterial.swift; sourceTree = "<group>"; };
 		7E904FE71B3583DA007BD238 /* NuoDunProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NuoDunProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E904FEB1B3583DA007BD238 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7E904FEC1B3583DA007BD238 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -340,6 +344,8 @@
 				A96967271B53F924000EC3A4 /* NODLocation.swift */,
 				A96967291B53FA30000EC3A4 /* NODSubproj.swift */,
 				A969672B1B53FB0F000EC3A4 /* NODWeather.swift */,
+				7E60CD3C1B5563AB00D60F3D /* NODMachine.swift */,
+				7E60CD3E1B55647700D60F3D /* NODMaterial.swift */,
 			);
 			name = NODObject;
 			sourceTree = "<group>";
@@ -483,6 +489,7 @@
 				1A1BDA061B47BFCE0082941E /* NODLabourController.swift in Sources */,
 				A9984D771B3EEF38007118D9 /* NODGlobal.swift in Sources */,
 				7EADDCDF1B37BC260095EDF8 /* NODMainMenuCell.swift in Sources */,
+				7E60CD3F1B55647700D60F3D /* NODMaterial.swift in Sources */,
 				1AEEE2BB1B3F99AD00DDCD3C /* NODBaseMainViewController.swift in Sources */,
 				1A1BDA0C1B47CA9B0082941E /* NODLabourSectionCell.swift in Sources */,
 				7E39027A1B366F1F0061DD90 /* DateTransform.swift in Sources */,
@@ -493,6 +500,7 @@
 				7E39028C1B36D2DC0061DD90 /* NODUserViewController.swift in Sources */,
 				1A1BDA081B47C5270082941E /* NODLabour.swift in Sources */,
 				7E3902871B369CBC0061DD90 /* CALayer+XibConfiguration.m in Sources */,
+				7E60CD3D1B5563AB00D60F3D /* NODMachine.swift in Sources */,
 				7E3902811B3690CA0061DD90 /* SlideMenuController.swift in Sources */,
 				7E39025D1B366DAA0061DD90 /* LoginUser.swift in Sources */,
 				A969672A1B53FA30000EC3A4 /* NODSubproj.swift in Sources */,

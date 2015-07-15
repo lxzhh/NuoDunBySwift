@@ -20,8 +20,9 @@ class NODConstructionController: NODBaseMainViewController {
                 self.contructionList = list
                 self.tableView.reloadData()
             })
-            
+            NODSessionManager.sharedInstance.queryEverything()
         }
+        
     }
     
     override func viewDidLoad() {
@@ -42,6 +43,7 @@ class NODConstructionController: NODBaseMainViewController {
         self.loadData()
         NSNotificationCenter.defaultCenter().rac_addObserverForName("loginNotification", object: nil).subscribeNext { (o : AnyObject!) -> Void in
             self.loadData()
+            
         }
     
     }

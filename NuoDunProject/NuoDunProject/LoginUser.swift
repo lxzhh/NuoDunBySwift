@@ -23,10 +23,10 @@ class LoginUser: NSObject, Mappable, Printable, NSCoding {
     
     // Mappable
     func mapping(map: Map) {
-        status    <- map["status"]
-        loginCode         <- map["DLBM"]
+        status        <- map["status"]
+        loginCode     <- map["DLBM"]
         userName      <- map["FBSMC"]
-        projName       <- map["XMMC"]
+        projName      <- map["XMMC"]
         
     }
     
