@@ -159,7 +159,7 @@ class NODSessionManager: AFHTTPSessionManager {
                 let infoList  = Mapper<NODConstructionInfo>().mapArray(json["XM"].arrayObject)
                 println("resultString :\(resultString) \n ")
                 completion(success: true,
-                    list: infoList)
+                    list: infoList ?? [])
                 
             },
             failure :{ (session: NSURLSessionDataTask!,error: NSError!) -> Void in

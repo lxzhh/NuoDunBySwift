@@ -11,12 +11,12 @@ import UIKit
 class NODConstructionController: NODBaseMainViewController {
     var currentPage : Int? = 1
     @IBOutlet weak var projNameLabel: UILabel!
-    var contructionList : Array<NODConstructionInfo>?
+    var contructionList : Array<NODConstructionInfo>? = []
     
     
     func requestForWeeak(week : Int){
         NODSessionManager.sharedInstance.getContructionList(week, completion: { (success, list) -> () in
-            self.contructionList = list
+            self.contructionList? += list!
             self.tableView.reloadData()
         })
     }
@@ -24,7 +24,7 @@ class NODConstructionController: NODBaseMainViewController {
     func loadData(){
         if((LoginUser.loadSaved()) != nil){
             projNameLabel.text = LoginUser.loadSaved()?.projName
-            self.requestForWeeak(1)
+            self.requestForWeeak(0)
             NODSessionManager.sharedInstance.queryEverything()
         }
     }
@@ -38,6 +38,7 @@ class NODConstructionController: NODBaseMainViewController {
     
         self.refreshControl?.rac_signalForControlEvents(UIControlEvents.ValueChanged).subscribeNext({  [weak self] (x) -> Void in
             if let strongSelf = self{
+                strongSelf.loadData()
                 strongSelf.refreshControl?.endRefreshing()
             }
             })
