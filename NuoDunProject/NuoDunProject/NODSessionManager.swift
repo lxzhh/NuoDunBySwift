@@ -18,7 +18,6 @@ class NODSessionManager: AFHTTPSessionManager {
             static let instance: NODSessionManager = NODSessionManager(baseURL: NSURL(string:urlString))
         }
         Static.instance.responseSerializer = AFHTTPResponseSerializer()
-
         return Static.instance
     }
    
@@ -270,7 +269,7 @@ class NODSessionManager: AFHTTPSessionManager {
                 let error : NSErrorPointer;
                 let json  = JSON(data: jdata)
                 let groups  = json.arrayObject as! [NODLocation]?
-                println("QueryGroup resultString :\(resultString) \n detail:\(groups)")
+                println("QueryLocation resultString :\(resultString) \n detail:\(groups)")
                 completion?(success: true,
                     locations: groups)
                 
@@ -291,7 +290,7 @@ class NODSessionManager: AFHTTPSessionManager {
                 let error : NSErrorPointer;
                 let json  = JSON(data: jdata)
                 let groups  = json.arrayObject as! [NODSubproj]?
-                println("QueryGroup resultString :\(resultString) \n detail:\(groups)")
+                println("QuerySubproj resultString :\(resultString) \n detail:\(groups)")
                 completion(success: true,
                     groups: groups)
                 
@@ -313,7 +312,7 @@ class NODSessionManager: AFHTTPSessionManager {
                 let error : NSErrorPointer;
                 let json  = JSON(data: jdata)
                 let groups  = json.arrayObject as! [NODWeather]?
-                println("QueryGroup resultString :\(resultString) \n detail:\(groups)")
+                println("QueryWeather resultString :\(resultString) \n detail:\(groups)")
                 completion?(success: true,
                     weatherList: groups)
                 
@@ -334,7 +333,7 @@ class NODSessionManager: AFHTTPSessionManager {
                 let error : NSErrorPointer;
                 let json  = JSON(data: jdata)
                 let groups  = json.arrayObject as! [NODMachine]?
-                println("QueryGroup resultString :\(resultString) \n detail:\(groups)")
+                println("QueryMachine resultString :\(resultString) \n detail:\(groups)")
                 completion?(success: true,
                     groups: groups)
                 
@@ -355,7 +354,7 @@ class NODSessionManager: AFHTTPSessionManager {
                 let error : NSErrorPointer;
                 let json  = JSON(data: jdata)
                 let groups  = json.arrayObject as! [NODMaterial]?
-                println("QueryGroup resultString :\(resultString) \n detail:\(groups)")
+                println("QueryMaterial resultString :\(resultString) \n detail:\(groups)")
                 completion?(success: true,
                     groups: groups)
                 

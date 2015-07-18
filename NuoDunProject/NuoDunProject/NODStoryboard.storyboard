@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="GbQ-7i-H32">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D2134" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="GbQ-7i-H32">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -296,7 +296,16 @@
                             <outlet property="delegate" destination="BeX-th-zFg" id="v79-VW-6Uv"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="施工记录" id="Efy-Se-pQ4"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="施工记录" id="Efy-Se-pQ4">
+                        <barButtonItem key="rightBarButtonItem" image="navbar-新建" id="IxN-xj-BRC">
+                            <connections>
+                                <action selector="addRecord:" destination="BeX-th-zFg" id="B0y-8G-PUE"/>
+                                <segue destination="tS2-Ml-Bgw" kind="show" identifier="createRcord" id="8DZ-aN-NfS"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="kbu-BR-4RK">
                         <autoresizingMask key="autoresizingMask"/>
@@ -308,6 +317,32 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WzJ-9X-CJy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1864" y="-485"/>
+        </scene>
+        <!--Table View Controller-->
+        <scene sceneID="IvC-dB-B1k">
+            <objects>
+                <tableViewController id="tS2-Ml-Bgw" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Zf6-Wk-6uX">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="ixX-Lf-bar">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ixX-Lf-bar" id="P4h-03-3l6">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="tS2-Ml-Bgw" id="DL6-jy-d0o"/>
+                            <outlet property="delegate" destination="tS2-Ml-Bgw" id="TmS-QX-NXi"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WvQ-yf-QpA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2308" y="-869"/>
         </scene>
         <!--Construction Detail Controller-->
         <scene sceneID="OS9-ye-mYT">
@@ -633,7 +668,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AdG-Pd-X2u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2307" y="-480"/>
+            <point key="canvasLocation" x="2315" y="-195"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="BVi-HF-j3n">

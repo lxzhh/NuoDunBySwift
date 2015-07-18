@@ -9,22 +9,29 @@
 import UIKit
 
 class NODConstructionController: NODBaseMainViewController {
-    
+    var currentPage : Int? = 1
     @IBOutlet weak var projNameLabel: UILabel!
     var contructionList : Array<NODConstructionInfo>?
+    
+    
+    func requestForWeeak(week : Int){
+        NODSessionManager.sharedInstance.getContructionList(week, completion: { (success, list) -> () in
+            self.contructionList = list
+            self.tableView.reloadData()
+        })
+    }
     
     func loadData(){
         if((LoginUser.loadSaved()) != nil){
             projNameLabel.text = LoginUser.loadSaved()?.projName
-            NODSessionManager.sharedInstance.getContructionList(2, completion: { (success, list) -> () in
-                self.contructionList = list
-                self.tableView.reloadData()
-            })
+            self.requestForWeeak(1)
             NODSessionManager.sharedInstance.queryEverything()
         }
-        
     }
     
+    @IBAction func addRecord(sender: AnyObject) {
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.registerNib(UINib(nibName: "NODLabourSectionCell", bundle: nil), forHeaderFooterViewReuseIdentifier: "NODLabourSectionCell")
@@ -37,6 +44,7 @@ class NODConstructionController: NODBaseMainViewController {
         self.tableView.addInfiniteScrollingWithActionHandler { [weak self]() -> Void in
             if let strongSelf = self{
                 strongSelf.tableView.infiniteScrollingView.stopAnimating()
+                strongSelf.requestForWeeak(strongSelf.currentPage!++)
             }
         }
         self.tableView.tableFooterView = UIView()
@@ -73,7 +81,6 @@ class NODConstructionController: NODBaseMainViewController {
         
     }
     
-    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("NODContructionCell", forIndexPath: indexPath) as! NODContructionCell
         cell.setDataWithConstructionInfo(self.contructionList?[indexPath.row])
@@ -81,12 +88,17 @@ class NODConstructionController: NODBaseMainViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let constructionDetail =  segue.destinationViewController as! NODConstructionDetailController
-        let cell = sender as? UITableViewCell
-        let indexPath = self.tableView.indexPathForCell(cell!)!
-        let construction = self.contructionList?[indexPath.row]
-        println("\(construction)")
-        constructionDetail.subProjId = construction?.subProjId
-        constructionDetail.constructionDate = construction?.constructionDate
+        if(segue.identifier == "createRcord"){
+            
+        }else{
+            let constructionDetail =  segue.destinationViewController as! NODConstructionDetailController
+            let cell = sender as? UITableViewCell
+            let indexPath = self.tableView.indexPathForCell(cell!)!
+            let construction = self.contructionList?[indexPath.row]
+            println("\(construction)")
+            constructionDetail.subProjId = construction?.subProjId
+            constructionDetail.constructionDate = construction?.constructionDate
+        }
+        
     }
 }

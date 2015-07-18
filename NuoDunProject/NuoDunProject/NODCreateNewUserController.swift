@@ -73,7 +73,7 @@ class NODCreateNewUserController: UITableViewController, UITextFieldDelegate {
         newWorker.entryDate = entryDateField.text
         newWorker.basicSalary = (basicSalaryField.text as NSString).floatValue
         newWorker.dailySalary = (dailySalaryField.text as NSString).floatValue
-        NODSessionManager.sharedInstance.createNewWorker(newWorker, completion: { (success) -> () in
+        self.createNewWorker(newWorker, completion: { (success) -> () in
             
         })
         
@@ -103,59 +103,23 @@ class NODCreateNewUserController: UITableViewController, UITextFieldDelegate {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
-    /*
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! UITableViewCell
-
-        // Configure the cell...
-
-        return cell
+    func createNewWorker(worker :NODWorker, completion:(success :Bool)-> ()){
+        let user = LoginUser.loadSaved()!
+        let mapper = Mapper().toJSONString(worker, prettyPrint: false)
+        let dictionary  = ["XGR" : mapper!]
+        let json = JSON(dictionary).rawString(encoding: NSUTF8StringEncoding, options: NSJSONWritingOptions(rawValue: 0))
+        
+        
+        let soap = SOAPEngine()
+        soap.version = VERSION_WCF_1_1;
+        soap.setValue(user.loginId, forKey: "LoginID")
+        soap.setValue("", forKey: "GRSC")
+        soap.requestURL("http://115.231.54.166:9090/jobrecordapp.asmx",soapAction:"", completeWithDictionary: { (i , list) -> Void in
+            
+        }) { (error) -> Void in
+            
+        }
+        
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
