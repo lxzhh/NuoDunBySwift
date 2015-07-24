@@ -31,7 +31,11 @@ class NODSubproj: NODObject  {
         }
     }
     
+    override class func saveKey() -> String?{
+        return "NODSubproj"
+    }
+    
     override class func loadJsonRootKey() -> String?{
-        return "BZ"
+        return "ZXM"
     }
 }

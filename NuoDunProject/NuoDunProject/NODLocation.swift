@@ -28,8 +28,12 @@ class NODLocation: NODObject {
         }
     }
     
+    override class func saveKey() -> String?{
+        return "NODLocation"
+    }
+    
     override class func loadJsonRootKey() -> String?{
-        return "BZ"
+        return "SGBW"
     }
     
 }

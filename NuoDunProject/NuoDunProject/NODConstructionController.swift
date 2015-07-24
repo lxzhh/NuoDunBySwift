@@ -26,6 +26,7 @@ class NODConstructionController: NODBaseMainViewController {
             projNameLabel.text = LoginUser.loadSaved()?.projName
             self.requestForWeeak(0)
             NODSessionManager.sharedInstance.queryEverything()
+            NODSessionManager.sharedInstance.isOpen()
         }
     }
     
@@ -38,6 +39,7 @@ class NODConstructionController: NODBaseMainViewController {
     
         self.refreshControl?.rac_signalForControlEvents(UIControlEvents.ValueChanged).subscribeNext({  [weak self] (x) -> Void in
             if let strongSelf = self{
+                strongSelf.contructionList = []
                 strongSelf.loadData()
                 strongSelf.refreshControl?.endRefreshing()
             }
@@ -86,6 +88,9 @@ class NODConstructionController: NODBaseMainViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("NODContructionCell", forIndexPath: indexPath) as! NODContructionCell
         cell.setDataWithConstructionInfo(self.contructionList?[indexPath.row])
         return cell
+    }
+    override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
+        return NODSessionManager.sharedInstance.createStatus?.dayPart != "00"
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

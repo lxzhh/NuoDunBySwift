@@ -29,6 +29,10 @@ class NODWeather: NODObject  {
         }
     }
     
+    override class func saveKey() -> String?{
+        return "NODWeather"
+    }
+    
     override class func loadJsonRootKey() -> String?{
         return "TQ"
     }

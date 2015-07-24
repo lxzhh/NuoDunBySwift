@@ -29,6 +29,9 @@ class NODMachine: NODObject {
         }
     }
     
+    override class func saveKey() -> String?{
+        return "NODMachine"
+    }
     override class func loadJsonRootKey() -> String?{
         return "JJ"
     }

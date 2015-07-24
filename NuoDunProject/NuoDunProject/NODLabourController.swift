@@ -7,21 +7,49 @@
 //
 
 import UIKit
+protocol NODLabourDelegate{
+    func labourDidSelectedWithResult([NODLabour]?) -> ()
+}
+
 
 class NODLabourController: NODBaseMainViewController {
     var labourCateList : Array<NODLabourCategory>?
     var selectedSection : Int = NSNotFound
+    var labourdDelegate: NODLabourDelegate?
+    var labourDidSeclectedAction :(([NODLabour]?) -> ())?
+    var needEditing : Bool? = false
     override func viewDidLoad() {
         super.viewDidLoad()
+//        self.tableView.editing = true
+        self.tableView.allowsMultipleSelectionDuringEditing = true
         self.tableView.registerNib(UINib(nibName: "NODLabourSectionCell", bundle: nil), forHeaderFooterViewReuseIdentifier: "NODLabourSectionCell")
-
         NODSessionManager.sharedInstance.labourInfoList { (success, list) -> () in
             self.labourCateList = list;
             self.tableView.reloadData()
         }
         self.tableView.tableFooterView = UIView()
+        
+        if self.needEditing! == true{
+            self.tableView.editing = true
+            self.navigationItem.leftBarButtonItem = nil
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "navbar-确定"), style: UIBarButtonItemStyle.Plain, target: self, action: Selector("finishSelect"))
+            
+        }
     }
 
+    func finishSelect(){
+        let selectedIndexPathList = self.tableView.indexPathsForSelectedRows()
+        let result : [NODLabour]? =  selectedIndexPathList?.map{ (ip : AnyObject) -> NODLabour in
+            let indexPath = ip as! NSIndexPath
+            let category = self.labourCateList?[indexPath.section]
+            let info = category?.labourList?[indexPath.row]
+            return info!
+        }
+        println("result :\(result)")
+        self.labourDidSeclectedAction?(result)
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+    
     // MARK: - Table view data source
 
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -30,22 +58,23 @@ class NODLabourController: NODBaseMainViewController {
         headerView.backgroundView?.backgroundColor = UIColor(red: 0.647, green: 0.906, blue: 1.000, alpha: 1.000)
         let category = self.labourCateList?[section]
         headerView.labourCategoryLabel.text = category?.categoryName
-        if(headerView.gestureRecognizers?.count ?? 0 == 0){
-            let tap = UITapGestureRecognizer()
-            tap.rac_gestureSignal().takeUntil(headerView.rac_prepareForReuseSignal).subscribeNext({ (x) -> Void in
-                let sections = NSMutableIndexSet(index: section)
-                if(section == self.selectedSection){
-                    self.selectedSection = NSNotFound
-                }else{
-                    if(self.selectedSection != NSNotFound){sections.addIndex(self.selectedSection)}
-                    self.selectedSection = section
-                }
-                self.tableView.reloadSections(sections, withRowAnimation: UITableViewRowAnimation.Automatic)
-
-//                self.tableView.scrollRectToVisible(CGRectMake(0, 0, 0, 0), animated: true)
-            })
-            headerView.addGestureRecognizer(tap)
-        }
+        headerView.gestureRecognizers?.foreach{headerView.removeGestureRecognizer($0 as! UIGestureRecognizer)}
+        let tap = UITapGestureRecognizer()
+        tap.rac_gestureSignal().subscribeNext({ (x) -> Void in
+            println("section\(section)")
+            let sections = NSMutableIndexSet(index: section)
+            if(section == self.selectedSection){
+                self.selectedSection = NSNotFound
+            }else{
+                if(self.selectedSection != NSNotFound){sections.addIndex(self.selectedSection)}
+                self.selectedSection = section
+            }
+            self.tableView.reloadSections(sections, withRowAnimation: UITableViewRowAnimation.Automatic)
+            
+            //                self.tableView.scrollRectToVisible(CGRectMake(0, 0, 0, 0), animated: true)
+        })
+        headerView.addGestureRecognizer(tap)
+        
         return headerView
     }
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -59,7 +88,7 @@ class NODLabourController: NODBaseMainViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if(section == self.selectedSection) {
+        if(section == self.selectedSection || tableView.editing) {
             let category = self.labourCateList![section]
             return category.labourList?.count ?? 0
         }else{
@@ -79,6 +108,9 @@ class NODLabourController: NODBaseMainViewController {
         return cell
     }
     
+    override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
+        return .None
+    }
 
     /*
     // Override to support conditional editing of the table view.
@@ -115,7 +147,9 @@ class NODLabourController: NODBaseMainViewController {
     }
     */
 
-    
+    override func  shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
+        return !self.tableView.editing
+    }
     
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

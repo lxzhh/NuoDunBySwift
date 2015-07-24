@@ -32,14 +32,16 @@ class NODCreateNewUserController: UITableViewController, UITextFieldDelegate {
     var newWorker : NODWorker = NODWorker()
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        SVProgressHUD.showWithStatus("加载班组")
         if let array = NODGroup.loadSavedJson(NODGroup.self){
             groups = array
             self.selectedGroup = groups?[0] as? NODGroup
+            SVProgressHUD.dismiss()
         }else{
             NODSessionManager.sharedInstance.QueryGroup { (success, groups) -> () in
                 self.groups = groups
                 self.selectedGroup = self.groups?[0] as? NODGroup
+                SVProgressHUD.dismiss()
             }
         }
         genderField.inputView = UIView()
@@ -54,7 +56,7 @@ class NODCreateNewUserController: UITableViewController, UITextFieldDelegate {
             self.selectedGroup = rows?[index]
             }, cancelBlock: { (picker) -> Void in
                 
-            }, origin: genderField)
+            }, origin: sender)
         picker.showActionSheetPicker()
     }
     
@@ -105,21 +107,44 @@ class NODCreateNewUserController: UITableViewController, UITextFieldDelegate {
     
     func createNewWorker(worker :NODWorker, completion:(success :Bool)-> ()){
         let user = LoginUser.loadSaved()!
-        let mapper = Mapper().toJSONString(worker, prettyPrint: false)
-        let dictionary  = ["XGR" : mapper!]
+//        let mapper = Mapper().toJSONString(worker, prettyPrint: false)
+        var dict = Mapper().toJSON(worker) as Dictionary
+        let jbgz = dict["JBGZ"] as!  Float
+        let rgz = dict["RGZ"] as! Float
+        dict["JBGZ"] = "\(jbgz)"
+        dict["RGZ"] = "\(rgz)"
+
+        let dictionary  = ["XGR" : dict]
         let json = JSON(dictionary).rawString(encoding: NSUTF8StringEncoding, options: NSJSONWritingOptions(rawValue: 0))
+
+        var soapMessage = "<v:Envelope xmlns:i='http://www.w3.org/2001/XMLSchema-instance' xmlns:d='http://www.w3.org/2001/XMLSchema' xmlns:c='http://www.w3.org/2003/05/soap-encoding' xmlns:v='http://www.w3.org/2003/05/soap-envelope'><v:Header /><v:Body><NewWorker xmlns='http://tempuri.org/' id='o0' c:root='1'><LoginID i:type='d:string'>\(user.loginId!)</LoginID><GRSC i:type='d:string'>\(json!)</GRSC></NewWorker></v:Body></v:Envelope>"
         
+        var urlString = "http://115.231.54.166:9090/jobrecordapp.asmx"
         
-        let soap = SOAPEngine()
-        soap.version = VERSION_WCF_1_1;
-        soap.setValue(user.loginId, forKey: "LoginID")
-        soap.setValue("", forKey: "GRSC")
-        soap.requestURL("http://115.231.54.166:9090/jobrecordapp.asmx",soapAction:"", completeWithDictionary: { (i , list) -> Void in
-            
-        }) { (error) -> Void in
-            
+        var url = NSURL(string: urlString)
+        
+        var theRequest = NSMutableURLRequest(URL: url!)
+        
+        var msgLength = String(count(soapMessage))
+        
+        theRequest.addValue("application/soap+xml;charset=utf-8", forHTTPHeaderField: "Content-Type")
+        theRequest.addValue(msgLength, forHTTPHeaderField: "Content-Length")
+        theRequest.HTTPMethod = "POST"
+        theRequest.HTTPBody = soapMessage.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) // or false
+        
+        var connection = NSURLConnection(request: theRequest, delegate: self, startImmediately: true)
+        connection!.start()
+        
+        if (connection == true) {
+            var mutableData : Void = NSMutableData.initialize()
         }
+    }
+    
+    func connection(connection: NSURLConnection, didReceiveResponse response: NSURLResponse)
+    {
         
     }
-
 }
+
+
+

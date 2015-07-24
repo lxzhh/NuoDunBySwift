@@ -11,6 +11,7 @@ import UIKit
 class NODMaterial: NODObject {
     var materialName : String?
     var materialID : String?
+    var materialCount : Int?
     
     required init?(_ map: Map) {
         super.init()
@@ -21,14 +22,16 @@ class NODMaterial: NODObject {
     override func mapping(map: Map) {
         materialName <- map["CLMC"]
         materialID <- map["CLBM"]
-        
+        materialCount <- map["SL"]
     }
     override var description: String {
         get{
             return "materialName:\(materialName) \n  materialID:\(materialID)"
         }
     }
-    
+    override class func saveKey() -> String?{
+        return "NODMaterial"
+    }
     override class func loadJsonRootKey() -> String?{
         return "CL"
     }

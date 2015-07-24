@@ -43,6 +43,5 @@ class NODObject: NSObject,Mappable, Printable {
         println(array)
         return groups
     }
-    
-   
+
 }
