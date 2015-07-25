@@ -1,16 +1,17 @@
 //
-//  NODWeather.swift
+//  NODMaterial.swift
 //  NuoDunProject
 //
-//  Created by 乐星宇 on 15/7/13.
+//  Created by lxzhh on 15/7/14.
 //  Copyright (c) 2015年 lxzhh. All rights reserved.
 //
 
 import UIKit
 
-class NODWeather: NODObject  {
-    var weatherName : String?
-    var weatherID : String?
+class NODMaterial: NODObject {
+    var materialName : String?
+    var materialID : String?
+    var materialCount : Int?
     
     required init?(_ map: Map) {
         super.init()
@@ -19,21 +20,19 @@ class NODWeather: NODObject  {
     
     // Mappable
     override func mapping(map: Map) {
-        weatherName <- map["TQMC"]
-        weatherID <- map["TQBM"]
-        
+        materialName <- map["CLMC"]
+        materialID <- map["CLBM"]
+        materialCount <- map["SL"]
     }
     override var description: String {
         get{
-            return "weatherName:\(weatherName) \n  weatherID:\(weatherID)"
+            return "materialName:\(materialName) \n  materialID:\(materialID)"
         }
     }
-    
     override class func saveKey() -> String?{
-        return "NODWeather"
+        return "NODMaterial"
     }
-    
     override class func loadJsonRootKey() -> String?{
-        return "TQ"
+        return "CL"
     }
 }

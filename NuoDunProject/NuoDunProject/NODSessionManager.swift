@@ -11,6 +11,8 @@ import UIKit
 let urlString :String  = "http://115.231.54.166:9090/jobrecordapp.asmx"
 
 class NODSessionManager: AFHTTPSessionManager {
+    
+    var createStatus : NODStatus?
     class var sharedInstance: NODSessionManager {
         struct Static {
 //            let configure :NSURLSessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
@@ -18,10 +20,24 @@ class NODSessionManager: AFHTTPSessionManager {
             static let instance: NODSessionManager = NODSessionManager(baseURL: NSURL(string:urlString))
         }
         Static.instance.responseSerializer = AFHTTPResponseSerializer()
-
         return Static.instance
     }
-   
+    func isOpen(){
+        let user = LoginUser.loadSaved()!
+        self.GET("IsOpen", parameters:["LoginID":user.loginId!], success: { (session: NSURLSessionDataTask!,responseObject: AnyObject!) -> Void in
+            let data = responseObject as! NSData
+            let xml = SWXMLHash.parse(data)
+            let resultString :String? = xml["string"].element?.text
+            let status = Mapper<NODStatus>().map(resultString!)
+            self.createStatus = status
+            println("resultString:\(resultString)")
+            },
+            failure :{ (session: NSURLSessionDataTask!,error: NSError!) -> Void in
+                println(error)
+        })
+    }
+    
+    
     func login(name : String, password : String, completion: (Bool) -> ()){
         self.GET("APPLogin", parameters:["LoginID":name,"MM":password], success: { (session: NSURLSessionDataTask!,responseObject: AnyObject!) -> Void in
             
@@ -160,7 +176,7 @@ class NODSessionManager: AFHTTPSessionManager {
                 let infoList  = Mapper<NODConstructionInfo>().mapArray(json["XM"].arrayObject)
                 println("resultString :\(resultString) \n ")
                 completion(success: true,
-                    list: infoList)
+                    list: infoList ?? [])
                 
             },
             failure :{ (session: NSURLSessionDataTask!,error: NSError!) -> Void in
@@ -244,23 +260,33 @@ class NODSessionManager: AFHTTPSessionManager {
     
     
     func createNewWorker(worker :NODWorker, completion:(success :Bool)-> ()){
+        
+        let dictionary2 = ["aKey": "aValue", "anotherKey": "anotherValue"]
+        let theJSONData = NSJSONSerialization.dataWithJSONObject(
+            dictionary2 ,
+            options: NSJSONWritingOptions(0),
+            error: nil)
+        let theJSONText = NSString(data: theJSONData!,
+            encoding: NSASCIIStringEncoding)
+        println("JSON string = \(theJSONText!)")
         let user = LoginUser.loadSaved()!
         let mapper = Mapper().toJSONString(worker, prettyPrint: false)
-        let dictionary  = ["XGR" : mapper!]
-        let json = JSON(dictionary).rawString(encoding: NSUTF8StringEncoding, options: NSJSONWritingOptions(rawValue: 0))
+        let dictionary  = ["XGR" : mapper! as NSString]
+        let json = JSON(dictionary).rawString(encoding: NSUTF8StringEncoding, options: NSJSONWritingOptions.allZeros)
         
-        let postString =  "<v:Envelope xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:d=\"http://www.w3.org/2001/XMLSchema\" xmlns:c=\"http://www.w3.org/2003/05/soap-encoding\" xmlns:v=\"http://www.w3.org/2003/05/soap-envelope\"><v:Header /><v:Body><NewWorker xmlns=\"http://tempuri.org/\" id=\"o0\" c:root=\"1\"><LoginID i:type=\"d:string\">\(user.loginId!)</LoginID><GRSC i:type=\"d:string\">\(json)</GRSC></NewWorker></v:Body></v:Envelope>"
-        println("create new worker \(worker) theJSONText:\(json!)")
-        self.POST("NewWorker", parameters:postString, success: { (session: NSURLSessionDataTask!, response :AnyObject!) -> Void in
+        let postString =  "<v:Envelope xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:d=\"http://www.w3.org/2001/XMLSchema\" xmlns:c=\"http://www.w3.org/2003/05/soap-encoding\" xmlns:v=\"http://www.w3.org/2003/05/soap-envelope\"><v:Header /><v:Body><NewWorker xmlns=\"http://tempuri.org/\" id=\"o0\" c:root=\"1\"><LoginID i:type=\"d:string\">\(user.loginId)</LoginID><GRSC i:type=\"d:string\">\(theJSONText)</GRSC></NewWorker></v:Body></v:Envelope>"
+       let result = (postString as NSString).stringByReplacingPercentEscapesUsingEncoding(NSUTF8StringEncoding)
+        println("create new worker \(worker) theJSONText:\(result)")
+        self.POST("NewWorker", parameters:result, success: { (session: NSURLSessionDataTask!, response :AnyObject!) -> Void in
             
             }, failure :{ (session: NSURLSessionDataTask!,error: NSError!) -> Void in
             println(error)
         })
     }
     
-    func QueryLocation(completion : (success : Bool, groups: Array<NODLocation>?)->()){
-        self.GET("QueryGroup",
-            parameters:nil,
+    func QueryLocation(completion : ((success : Bool, locations: Array<NODLocation>?)->())? ){
+        self.GET("QueryLocation",
+            parameters:["LoginID":LoginUser.loadSaved()!.loginId!],
             success: { (session: NSURLSessionDataTask!,responseObject: AnyObject!) -> Void in
                 let data = responseObject as! NSData
                 let xml = SWXMLHash.parse(data)
@@ -270,13 +296,127 @@ class NODSessionManager: AFHTTPSessionManager {
                 let error : NSErrorPointer;
                 let json  = JSON(data: jdata)
                 let groups  = json.arrayObject as! [NODLocation]?
-                println("QueryGroup resultString :\(resultString) \n detail:\(groups)")
-                completion(success: true,
+                println("QueryLocation resultString :\(resultString) \n detail:\(groups)")
+                completion?(success: true,
+                    locations: groups)
+                
+            },
+            failure :{ (session: NSURLSessionDataTask!,error: NSError!) -> Void in
+                println(error)
+        })
+    }
+    func QuerySubproj(completion : ((success : Bool, groups: Array<NODSubproj>?)->())?){
+        self.GET("QuerySubProject",
+            parameters:["LoginID":LoginUser.loadSaved()!.loginId!],
+            success: { (session: NSURLSessionDataTask!,responseObject: AnyObject!) -> Void in
+                let data = responseObject as! NSData
+                let xml = SWXMLHash.parse(data)
+                let resultString :String? = xml["string"].element?.text
+                NODSubproj.saveToLocal(resultString!)
+                let jdata: NSData = resultString!.dataUsingEncoding(NSUTF8StringEncoding)!
+                let error : NSErrorPointer;
+                let json  = JSON(data: jdata)
+                let groups  = json.arrayObject as! [NODSubproj]?
+                println("QuerySubproj resultString :\(resultString) \n detail:\(groups)")
+                completion?(success: true,
                     groups: groups)
                 
             },
             failure :{ (session: NSURLSessionDataTask!,error: NSError!) -> Void in
                 println(error)
         })
+    }
+    
+    func QueryWeather(completion : ((success : Bool, weatherList: Array<NODWeather>?)->())?){
+        self.GET("QueryWeather",
+            parameters:nil,
+            success: { (session: NSURLSessionDataTask!,responseObject: AnyObject!) -> Void in
+                let data = responseObject as! NSData
+                let xml = SWXMLHash.parse(data)
+                let resultString :String? = xml["string"].element?.text
+                NODWeather.saveToLocal(resultString!)
+                let jdata: NSData = resultString!.dataUsingEncoding(NSUTF8StringEncoding)!
+                let error : NSErrorPointer;
+                let json  = JSON(data: jdata)
+                let groups  = json.arrayObject as! [NODWeather]?
+                println("QueryWeather resultString :\(resultString) \n detail:\(groups)")
+                completion?(success: true,
+                    weatherList: groups)
+                
+            },
+            failure :{ (session: NSURLSessionDataTask!,error: NSError!) -> Void in
+                println(error)
+        })
+    }
+    func QueryMachine(completion : ((success : Bool, groups: Array<NODMachine>?)->())? ){
+        self.GET("QueryMachine",
+            parameters:["LoginID":LoginUser.loadSaved()!.loginId!],
+            success: { (session: NSURLSessionDataTask!,responseObject: AnyObject!) -> Void in
+                let data = responseObject as! NSData
+                let xml = SWXMLHash.parse(data)
+                let resultString :String? = xml["string"].element?.text
+                NODMachine.saveToLocal(resultString!)
+                let jdata: NSData = resultString!.dataUsingEncoding(NSUTF8StringEncoding)!
+                let error : NSErrorPointer;
+                let json  = JSON(data: jdata)
+                let groups  = json.arrayObject as! [NODMachine]?
+                println("QueryMachine resultString :\(resultString) \n detail:\(groups)")
+                completion?(success: true,
+                    groups: groups)
+                
+            },
+            failure :{ (session: NSURLSessionDataTask!,error: NSError!) -> Void in
+                println(error)
+        })
+    }
+    func QueryMaterial(completion : ((success : Bool, groups: Array<NODMaterial>?)->())? ){
+        self.GET("QueryMaterial",
+            parameters:["LoginID":LoginUser.loadSaved()!.loginId!],
+            success: { (session: NSURLSessionDataTask!,responseObject: AnyObject!) -> Void in
+                let data = responseObject as! NSData
+                let xml = SWXMLHash.parse(data)
+                let resultString :String? = xml["string"].element?.text
+                NODMaterial.saveToLocal(resultString!)
+                let jdata: NSData = resultString!.dataUsingEncoding(NSUTF8StringEncoding)!
+                let error : NSErrorPointer;
+                let json  = JSON(data: jdata)
+                let groups  = json.arrayObject as! [NODMaterial]?
+                println("QueryMaterial resultString :\(resultString) \n detail:\(groups)")
+                completion?(success: true,
+                    groups: groups)
+                
+            },
+            failure :{ (session: NSURLSessionDataTask!,error: NSError!) -> Void in
+                println(error)
+        })
+    }
+    func QueryWorker(completion : ((success : Bool, groups: Array<NODLabour>?)->())? ){
+        self.GET("QueryWorkerList",
+            parameters:["LoginID":LoginUser.loadSaved()!.loginId!],
+            success: { (session: NSURLSessionDataTask!,responseObject: AnyObject!) -> Void in
+                let data = responseObject as! NSData
+                let xml = SWXMLHash.parse(data)
+                let resultString :String? = xml["string"].element?.text
+                NODLabour.saveToLocal(resultString!)
+                let jdata: NSData = resultString!.dataUsingEncoding(NSUTF8StringEncoding)!
+                let error : NSErrorPointer;
+                let json  = JSON(data: jdata)
+                let groups  = json.arrayObject as! [NODLabour]?
+                println("QueryWorker resultString :\(resultString) \n detail:\(groups)")
+                completion?(success: true,
+                    groups: groups)
+                
+            },
+            failure :{ (session: NSURLSessionDataTask!,error: NSError!) -> Void in
+                println(error)
+        })
+    }
+    
+    func queryEverything(){
+        self.QueryLocation(nil)
+        self.QueryMachine(nil)
+        self.QueryMaterial(nil)
+        self.QuerySubproj(nil)
+        self.QueryWorker(nil)
     }
 }

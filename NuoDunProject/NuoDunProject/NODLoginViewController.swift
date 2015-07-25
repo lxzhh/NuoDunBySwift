@@ -26,9 +26,10 @@ class NODLoginViewController: UIViewController {
     
     //"YYQ0-ZJND201502","MM":"13484265"
     @IBAction func loginAction(sender: AnyObject) {
-
+        SVProgressHUD.showWithStatus("登录中")
         NODSessionManager.sharedInstance.login(nameTextField.text, password: pwdTextField.text) { (loginSuccess : Bool) -> () in
             if (loginSuccess){
+                SVProgressHUD.dismiss()
                 self.dismissViewControllerAnimated(true, completion: nil)
             }
         }

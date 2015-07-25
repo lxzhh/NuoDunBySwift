@@ -9,39 +9,52 @@
 import UIKit
 
 class NODConstructionController: NODBaseMainViewController {
-    
+    var currentPage : Int? = 1
     @IBOutlet weak var projNameLabel: UILabel!
-    var contructionList : Array<NODConstructionInfo>?
+    var contructionList : Array<NODConstructionInfo>? = []
+    
+    
+    func requestForWeeak(week : Int){
+        NODSessionManager.sharedInstance.getContructionList(week, completion: { (success, list) -> () in
+            self.contructionList? += list!
+            self.tableView.reloadData()
+        })
+    }
     
     func loadData(){
         if((LoginUser.loadSaved()) != nil){
             projNameLabel.text = LoginUser.loadSaved()?.projName
-            NODSessionManager.sharedInstance.getContructionList(2, completion: { (success, list) -> () in
-                self.contructionList = list
-                self.tableView.reloadData()
-            })
-            
+            self.requestForWeeak(0)
+            NODSessionManager.sharedInstance.queryEverything()
+            NODSessionManager.sharedInstance.isOpen()
         }
     }
     
+    @IBAction func addRecord(sender: AnyObject) {
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.registerNib(UINib(nibName: "NODLabourSectionCell", bundle: nil), forHeaderFooterViewReuseIdentifier: "NODLabourSectionCell")
     
         self.refreshControl?.rac_signalForControlEvents(UIControlEvents.ValueChanged).subscribeNext({  [weak self] (x) -> Void in
             if let strongSelf = self{
+                strongSelf.contructionList = []
+                strongSelf.loadData()
                 strongSelf.refreshControl?.endRefreshing()
             }
             })
         self.tableView.addInfiniteScrollingWithActionHandler { [weak self]() -> Void in
             if let strongSelf = self{
                 strongSelf.tableView.infiniteScrollingView.stopAnimating()
+                strongSelf.requestForWeeak(strongSelf.currentPage!++)
             }
         }
         self.tableView.tableFooterView = UIView()
         self.loadData()
         NSNotificationCenter.defaultCenter().rac_addObserverForName("loginNotification", object: nil).subscribeNext { (o : AnyObject!) -> Void in
             self.loadData()
+            
         }
     
     }
@@ -71,20 +84,27 @@ class NODConstructionController: NODBaseMainViewController {
         
     }
     
-    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("NODContructionCell", forIndexPath: indexPath) as! NODContructionCell
         cell.setDataWithConstructionInfo(self.contructionList?[indexPath.row])
         return cell
     }
+    override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
+        return NODSessionManager.sharedInstance.createStatus?.dayPart != "00"
+    }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let constructionDetail =  segue.destinationViewController as! NODConstructionDetailController
-        let cell = sender as? UITableViewCell
-        let indexPath = self.tableView.indexPathForCell(cell!)!
-        let construction = self.contructionList?[indexPath.row]
-        println("\(construction)")
-        constructionDetail.subProjId = construction?.subProjId
-        constructionDetail.constructionDate = construction?.constructionDate
+        if(segue.identifier == "createRcord"){
+            
+        }else{
+            let constructionDetail =  segue.destinationViewController as! NODConstructionDetailController
+            let cell = sender as? UITableViewCell
+            let indexPath = self.tableView.indexPathForCell(cell!)!
+            let construction = self.contructionList?[indexPath.row]
+            println("\(construction)")
+            constructionDetail.subProjId = construction?.subProjId
+            constructionDetail.constructionDate = construction?.constructionDate
+        }
+        
     }
 }

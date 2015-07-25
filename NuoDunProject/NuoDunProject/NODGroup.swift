@@ -27,7 +27,11 @@ class NODGroup: NODObject   {
             return "groupName:\(groupName) \n  groupID:\(groupID)"
         }
     }
-    
+    override class func saveKey() -> String?{
+        let string = toString(self.dynamicType)
+        //        let key = string.componentsSeparatedByString(".").last!
+        return "\(string)"
+    }
     override class func loadJsonRootKey() -> String?{
         return "BZ"
     }

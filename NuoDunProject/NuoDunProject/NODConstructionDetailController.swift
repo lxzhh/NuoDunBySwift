@@ -8,9 +8,12 @@
 
 import UIKit
 
+
 class NODConstructionDetailController: UIViewController {
     var constructionDate : String?
     var subProjId : String?
+    var detail : NODConstructionDetail?
+    
     @IBOutlet weak var locationNameLabel: UILabel!
     
     @IBOutlet weak var subprojNameLabel: UILabel!
@@ -21,13 +24,13 @@ class NODConstructionDetailController: UIViewController {
     @IBOutlet weak var workLoadLabel: UILabel!
     @IBOutlet var phaseButtons: [UIButton]!
     
+    @IBOutlet weak var workerListLabel: UILabel!
     func revokeProj(){
         let alertView = UIAlertView(title: "提示", message: "是否删除记录", delegate: nil, cancelButtonTitle: "取消")
         alertView.addButtonWithTitle("确定")
         alertView.rac_buttonClickedSignal().subscribeNext { (x) -> Void in
             let number = x as! Int
                 
-            
         }
         alertView.show()
     }
@@ -37,6 +40,7 @@ class NODConstructionDetailController: UIViewController {
         self.title = "施工信息"
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "navbar-删除"), style: UIBarButtonItemStyle.Plain, target: self, action:Selector("revokeProj"))
         NODSessionManager.sharedInstance.getContructionDetail(subProjId, constructionDate: constructionDate) { (success, detail) -> () in
+            self.detail = detail
             self.locationNameLabel.text = detail?.constructionLocation
             self.subprojNameLabel.text = detail?.subProjName
             self.dateLabel.text = detail?.constructionDate
@@ -46,23 +50,33 @@ class NODConstructionDetailController: UIViewController {
     
     func setDatawithDayPhase(phase : NODConstructionPhase?){
         if(phase != nil){
-            
+
+            maxTempLabel.text = "\(phase!.maxTemp!)°C"
+            weatherLabel.text = phase?.weather
+            mintempLabel.text = "\(phase!.minTemp!)°C"
+            workLoadLabel.text = String(phase!.workLoad!)
+        }else{
+            maxTempLabel.text = "0°C"
+            weatherLabel.text = ""
+            mintempLabel.text = "0°C"
+            workLoadLabel.text = "无"
         }
-        maxTempLabel.text = "\(phase!.maxTemp!)°C"
-        weatherLabel.text = phase?.weather
-        mintempLabel.text = "\(phase!.minTemp!)°C"
-        workLoadLabel.text = String(phase!.workLoad!)
+        workerListLabel.attributedText = phase?.workerListAttributedString()
+
     }
   
     @IBAction func switchDayPhase(sender: UIButton) {
         
+        phaseButtons.foreach{ $0.selected = false }
+        sender.selected = true
+        
         switch sender.tag{
         case 100:
-            println()
+            setDatawithDayPhase(detail?.phase1)
         case 101:
-            println()
+            setDatawithDayPhase(detail?.phase2)
         case 102:
-            println()
+            setDatawithDayPhase(detail?.phase3)
         default:
             println()
         }
@@ -74,15 +88,5 @@ class NODConstructionDetailController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

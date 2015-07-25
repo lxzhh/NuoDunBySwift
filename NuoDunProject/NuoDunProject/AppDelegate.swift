@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NODSessionManager.sharedInstance.QueryGroup { (success, groups) -> () in
             
         }
-
+        NODSessionManager.sharedInstance.QueryWeather(nil)
         return true
     }
 

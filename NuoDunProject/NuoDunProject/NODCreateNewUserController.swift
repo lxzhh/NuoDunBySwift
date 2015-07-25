@@ -32,14 +32,16 @@ class NODCreateNewUserController: UITableViewController, UITextFieldDelegate {
     var newWorker : NODWorker = NODWorker()
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        SVProgressHUD.showWithStatus("加载班组")
         if let array = NODGroup.loadSavedJson(NODGroup.self){
             groups = array
             self.selectedGroup = groups?[0] as? NODGroup
+            SVProgressHUD.dismiss()
         }else{
             NODSessionManager.sharedInstance.QueryGroup { (success, groups) -> () in
                 self.groups = groups
                 self.selectedGroup = self.groups?[0] as? NODGroup
+                SVProgressHUD.dismiss()
             }
         }
         genderField.inputView = UIView()
@@ -54,7 +56,7 @@ class NODCreateNewUserController: UITableViewController, UITextFieldDelegate {
             self.selectedGroup = rows?[index]
             }, cancelBlock: { (picker) -> Void in
                 
-            }, origin: genderField)
+            }, origin: sender)
         picker.showActionSheetPicker()
     }
     
@@ -73,7 +75,7 @@ class NODCreateNewUserController: UITableViewController, UITextFieldDelegate {
         newWorker.entryDate = entryDateField.text
         newWorker.basicSalary = (basicSalaryField.text as NSString).floatValue
         newWorker.dailySalary = (dailySalaryField.text as NSString).floatValue
-        NODSessionManager.sharedInstance.createNewWorker(newWorker, completion: { (success) -> () in
+        self.createNewWorker(newWorker, completion: { (success) -> () in
             
         })
         
@@ -103,59 +105,46 @@ class NODCreateNewUserController: UITableViewController, UITextFieldDelegate {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
-    /*
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! UITableViewCell
+    func createNewWorker(worker :NODWorker, completion:(success :Bool)-> ()){
+        let user = LoginUser.loadSaved()!
+//        let mapper = Mapper().toJSONString(worker, prettyPrint: false)
+        var dict = Mapper().toJSON(worker) as Dictionary
+        let jbgz = dict["JBGZ"] as!  Float
+        let rgz = dict["RGZ"] as! Float
+        dict["JBGZ"] = "\(jbgz)"
+        dict["RGZ"] = "\(rgz)"
 
-        // Configure the cell...
+        let dictionary  = ["XGR" : dict]
+        let json = JSON(dictionary).rawString(encoding: NSUTF8StringEncoding, options: NSJSONWritingOptions(rawValue: 0))
 
-        return cell
+        var soapMessage = "<v:Envelope xmlns:i='http://www.w3.org/2001/XMLSchema-instance' xmlns:d='http://www.w3.org/2001/XMLSchema' xmlns:c='http://www.w3.org/2003/05/soap-encoding' xmlns:v='http://www.w3.org/2003/05/soap-envelope'><v:Header /><v:Body><NewWorker xmlns='http://tempuri.org/' id='o0' c:root='1'><LoginID i:type='d:string'>\(user.loginId!)</LoginID><GRSC i:type='d:string'>\(json!)</GRSC></NewWorker></v:Body></v:Envelope>"
+        
+        var urlString = "http://115.231.54.166:9090/jobrecordapp.asmx"
+        
+        var url = NSURL(string: urlString)
+        
+        var theRequest = NSMutableURLRequest(URL: url!)
+        
+        var msgLength = String(count(soapMessage))
+        
+        theRequest.addValue("application/soap+xml;charset=utf-8", forHTTPHeaderField: "Content-Type")
+        theRequest.addValue(msgLength, forHTTPHeaderField: "Content-Length")
+        theRequest.HTTPMethod = "POST"
+        theRequest.HTTPBody = soapMessage.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) // or false
+        
+        var connection = NSURLConnection(request: theRequest, delegate: self, startImmediately: true)
+        connection!.start()
+        
+        if (connection == true) {
+            var mutableData : Void = NSMutableData.initialize()
+        }
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the specified item to be editable.
-        return true
+    
+    func connection(connection: NSURLConnection, didReceiveResponse response: NSURLResponse)
+    {
+        
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
+
+
+

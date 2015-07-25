@@ -270,18 +270,20 @@ public final class Mapper<N: Mappable> {
 
 	/// Maps an Object to a JSON string
 	public func toJSONString(object: N, prettyPrint: Bool) -> String? {
-		let JSONDict = toJSON(object)
+		var JSONDict = toJSON(object)
 
 		var err: NSError?
 		if NSJSONSerialization.isValidJSONObject(JSONDict) {
 			let options: NSJSONWritingOptions = prettyPrint ? .PrettyPrinted : .allZeros
-			let JSONData: NSData? = NSJSONSerialization.dataWithJSONObject(JSONDict, options: options, error: &err)
+			
+            let JSONData: NSData? = NSJSONSerialization.dataWithJSONObject(JSONDict, options: NSJSONWritingOptions(0), error: &err)
 			if let error = err {
 				println(error)
 			}
 
-			if let JSON = JSONData {
-				return NSString(data: JSON, encoding: NSUTF8StringEncoding) as? String
+            if let JSON = JSONData {
+                let string = NSString(data: JSON, encoding: NSUTF8StringEncoding)
+				return string as? String
 			}
 		}
 
