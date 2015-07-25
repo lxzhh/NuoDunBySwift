@@ -12,6 +12,7 @@ enum NODSlideMainViewType : String{
     case NODSlideMainViewTypeFinacial = "NODFiancialController"
     case NODSlideMainViewTypeLabour = "NODLabourController"
     case NODSlideMainViewTypeSetting = "NODSettingVC"
+    case NODSlideMainViewTypeSchedule = "NODProgressController"
     
 }
 

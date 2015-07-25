@@ -45,6 +45,9 @@ class NODConstructionDetailController: UIViewController {
     }
     
     func setDatawithDayPhase(phase : NODConstructionPhase?){
+        if(phase != nil){
+            
+        }
         maxTempLabel.text = "\(phase!.maxTemp!)°C"
         weatherLabel.text = phase?.weather
         mintempLabel.text = "\(phase!.minTemp!)°C"

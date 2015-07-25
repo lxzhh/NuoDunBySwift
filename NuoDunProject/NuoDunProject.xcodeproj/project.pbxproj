@@ -55,6 +55,8 @@
 		A91230191B48BADD00BCCEBF /* NODConstructionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91230181B48BADD00BCCEBF /* NODConstructionController.swift */; };
 		A912301B1B48BF5400BCCEBF /* NODConstructionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A912301A1B48BF5400BCCEBF /* NODConstructionInfo.swift */; };
 		A92CBDDC1B48D73A004E4D52 /* NODContructionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92CBDDB1B48D73A004E4D52 /* NODContructionCell.swift */; };
+		A93EFB471B6322DB00BA1D88 /* NODProgressController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93EFB461B6322DB00BA1D88 /* NODProgressController.swift */; };
+		A93EFB491B6367ED00BA1D88 /* NODSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93EFB481B6367ED00BA1D88 /* NODSchedule.swift */; };
 		A94BDC0C1B494DF2008560B5 /* NODConstructionDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94BDC0B1B494DF2008560B5 /* NODConstructionDetail.swift */; };
 		A95FF2241B5414F300AD747A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A95FF2231B5414F300AD747A /* Security.framework */; };
 		A95FF2261B54150300AD747A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A95FF2251B54150300AD747A /* SystemConfiguration.framework */; };
@@ -126,6 +128,8 @@
 		A91230181B48BADD00BCCEBF /* NODConstructionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NODConstructionController.swift; sourceTree = "<group>"; };
 		A912301A1B48BF5400BCCEBF /* NODConstructionInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NODConstructionInfo.swift; sourceTree = "<group>"; };
 		A92CBDDB1B48D73A004E4D52 /* NODContructionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NODContructionCell.swift; sourceTree = "<group>"; };
+		A93EFB461B6322DB00BA1D88 /* NODProgressController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NODProgressController.swift; sourceTree = "<group>"; };
+		A93EFB481B6367ED00BA1D88 /* NODSchedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NODSchedule.swift; sourceTree = "<group>"; };
 		A94BDC0B1B494DF2008560B5 /* NODConstructionDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NODConstructionDetail.swift; sourceTree = "<group>"; };
 		A95FF2231B5414F300AD747A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		A95FF2251B54150300AD747A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -182,6 +186,7 @@
 				1AEEE2C91B3FE60F00DDCD3C /* NODFiancialController.swift */,
 				1A1BDA051B47BFCE0082941E /* NODLabourController.swift */,
 				A91230181B48BADD00BCCEBF /* NODConstructionController.swift */,
+				A93EFB461B6322DB00BA1D88 /* NODProgressController.swift */,
 				1AEEE2BF1B3F9EA100DDCD3C /* SlideMenuController+NODTrasition.swift */,
 			);
 			name = MainControllers;
@@ -216,6 +221,7 @@
 				A91230161B48B64F00BCCEBF /* NODFinacialInfo.swift */,
 				A912301A1B48BF5400BCCEBF /* NODConstructionInfo.swift */,
 				A94BDC0B1B494DF2008560B5 /* NODConstructionDetail.swift */,
+				A93EFB481B6367ED00BA1D88 /* NODSchedule.swift */,
 			);
 			name = models;
 			sourceTree = "<group>";
@@ -475,6 +481,8 @@
 				7E3902781B366F1F0061DD90 /* CustomDateFormatTransform.swift in Sources */,
 				7E39024A1B3664A00061DD90 /* SWXMLHash.swift in Sources */,
 				A97362471B50C5900052567E /* NODCreateNewUserController.swift in Sources */,
+				A93EFB491B6367ED00BA1D88 /* NODSchedule.swift in Sources */,
+				A93EFB471B6322DB00BA1D88 /* NODProgressController.swift in Sources */,
 				7E39027B1B366F1F0061DD90 /* EnumTransform.swift in Sources */,
 				7E3902591B366D560061DD90 /* Mapper.swift in Sources */,
 				A96967281B53F924000EC3A4 /* NODLocation.swift in Sources */,

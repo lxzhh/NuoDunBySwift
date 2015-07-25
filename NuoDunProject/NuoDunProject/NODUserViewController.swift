@@ -2,7 +2,7 @@
 //  NODUserViewController.swift
 //  NuoDunProject
 //
-//  Created by lxzhh on 15/6/21.
+//  Created \\\\\\\\by lxzhh on 15/6/21.
 //  Copyright (c) 2015年 lxzhh. All rights reserved.
 //
 
@@ -72,7 +72,7 @@ class NODUserViewController: UIViewController,UITableViewDelegate,UITableViewDat
             case 0: slideType = .NODSlideMainViewTypeHome
             case 1: slideType = .NODSlideMainViewTypeLabour
             case 2: slideType = .NODSlideMainViewTypeFinacial
-            case 4: slideType = .NODSlideMainViewTypeSetting
+            case 3: slideType = .NODSlideMainViewTypeSchedule
             default:
                 slideType = .NODSlideMainViewTypeSetting
             }
@@ -81,6 +81,5 @@ class NODUserViewController: UIViewController,UITableViewDelegate,UITableViewDat
         }else{
             self.slideMenuController()?.closeLeft()
         }
-        
     }
 }
