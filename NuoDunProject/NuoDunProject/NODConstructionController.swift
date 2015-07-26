@@ -16,12 +16,19 @@ class NODConstructionController: NODBaseMainViewController {
     
     func requestForWeeak(week : Int){
         NODSessionManager.sharedInstance.getContructionList(week, completion: { (success, list) -> () in
+            if list!.count == 0{
+                SVProgressHUD.showSuccessWithStatus("这周没有施工，请上拉加载之前的记录")
+            }else
+            {
+                SVProgressHUD.dismiss()
+            }
             self.contructionList? += list!
             self.tableView.reloadData()
         })
     }
     
     func loadData(){
+        
         if((LoginUser.loadSaved()) != nil){
             projNameLabel.text = LoginUser.loadSaved()?.projName
             self.requestForWeeak(0)
@@ -40,19 +47,33 @@ class NODConstructionController: NODBaseMainViewController {
         self.refreshControl?.rac_signalForControlEvents(UIControlEvents.ValueChanged).subscribeNext({  [weak self] (x) -> Void in
             if let strongSelf = self{
                 strongSelf.contructionList = []
-                strongSelf.loadData()
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    SVProgressHUD.showWithStatus("加载中")
+                });
+                strongSelf.currentPage = 0
+                strongSelf.requestForWeeak(0)
                 strongSelf.refreshControl?.endRefreshing()
             }
             })
         self.tableView.addInfiniteScrollingWithActionHandler { [weak self]() -> Void in
             if let strongSelf = self{
+                let offsetY =  strongSelf.tableView.contentOffset.y
+                if offsetY > 0{
+                    strongSelf.tableView.infiniteScrollingView.stopAnimating()
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        SVProgressHUD.showWithStatus("加载中")
+                    });
+                    strongSelf.requestForWeeak(strongSelf.currentPage!++)
+                }
                 strongSelf.tableView.infiniteScrollingView.stopAnimating()
-                strongSelf.requestForWeeak(strongSelf.currentPage!++)
             }
         }
         self.tableView.tableFooterView = UIView()
         self.loadData()
         NSNotificationCenter.defaultCenter().rac_addObserverForName("loginNotification", object: nil).subscribeNext { (o : AnyObject!) -> Void in
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                SVProgressHUD.showWithStatus("加载中")
+            });
             self.loadData()
             
         }

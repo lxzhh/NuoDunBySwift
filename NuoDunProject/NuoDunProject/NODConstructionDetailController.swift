@@ -25,12 +25,45 @@ class NODConstructionDetailController: UIViewController {
     @IBOutlet var phaseButtons: [UIButton]!
     
     @IBOutlet weak var workerListLabel: UILabel!
+    
+    func deleteRequest( deletedId : String?){
+        
+        let user = LoginUser.loadSaved()!
+        
+        var soapMessage = "<v:Envelope xmlns:i='http://www.w3.org/2001/XMLSchema-instance' xmlns:d='http://www.w3.org/2001/XMLSchema' xmlns:c='http://www.w3.org/2003/05/soap-encoding' xmlns:v='http://www.w3.org/2003/05/soap-envelope'><v:Header /><v:Body><RevokeNewTask xmlns='http://tempuri.org/' id='o0' c:root='1'><LoginID i:type='d:string'>\(user.loginId!)</LoginID><SGXH  i:type=\"d:string\">\(deletedId!)</SGXH></RevokeNewTask></v:Body></v:Envelope>"
+        
+        var urlString = "http://115.231.54.166:9090/jobrecordapp.asmx"
+        
+        var url = NSURL(string: urlString)
+        
+        var theRequest = NSMutableURLRequest(URL: url!)
+        
+        var msgLength = String(count(soapMessage))
+        
+        theRequest.addValue("application/soap+xml;charset=utf-8", forHTTPHeaderField: "Content-Type")
+        theRequest.addValue(msgLength, forHTTPHeaderField: "Content-Length")
+        theRequest.HTTPMethod = "POST"
+        theRequest.HTTPBody = soapMessage.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) // or false
+        
+        let requestOperation = AFHTTPRequestOperation(request: theRequest)
+        requestOperation.setCompletionBlockWithSuccess({ (operation, responseObject) -> Void in
+            SVProgressHUD.showSuccessWithStatus("成功删除")
+            self.navigationController?.popViewControllerAnimated(true)
+            }, failure: { (operation, error) -> Void in
+                SVProgressHUD.showErrorWithStatus("删除失败")
+        })
+        requestOperation.start()
+        
+    }
+    
     func revokeProj(){
         let alertView = UIAlertView(title: "提示", message: "是否删除记录", delegate: nil, cancelButtonTitle: "取消")
         alertView.addButtonWithTitle("确定")
         alertView.rac_buttonClickedSignal().subscribeNext { (x) -> Void in
             let number = x as! Int
-                
+            if number != alertView.cancelButtonIndex{
+                self.deleteRequest(self.subProjId)
+            }
         }
         alertView.show()
     }

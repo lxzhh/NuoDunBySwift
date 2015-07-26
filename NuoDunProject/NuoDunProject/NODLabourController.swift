@@ -18,17 +18,32 @@ class NODLabourController: NODBaseMainViewController {
     var labourdDelegate: NODLabourDelegate?
     var labourDidSeclectedAction :(([NODLabour]?) -> ())?
     var needEditing : Bool? = false
+    
+    func loadData(){
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            SVProgressHUD.showWithStatus("加载中")
+        });
+        NODSessionManager.sharedInstance.labourInfoList { (success, list) -> () in
+            SVProgressHUD.dismiss()
+            self.labourCateList = list;
+            self.tableView.reloadData()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 //        self.tableView.editing = true
         self.tableView.allowsMultipleSelectionDuringEditing = true
         self.tableView.registerNib(UINib(nibName: "NODLabourSectionCell", bundle: nil), forHeaderFooterViewReuseIdentifier: "NODLabourSectionCell")
-        NODSessionManager.sharedInstance.labourInfoList { (success, list) -> () in
-            self.labourCateList = list;
-            self.tableView.reloadData()
-        }
+        self.loadData()
         self.tableView.tableFooterView = UIView()
-        
+        self.refreshControl?.rac_signalForControlEvents(UIControlEvents.ValueChanged).subscribeNext({  [weak self] (x) -> Void in
+            if let strongSelf = self{
+                strongSelf.labourCateList = []
+                strongSelf.loadData()
+                strongSelf.refreshControl?.endRefreshing()
+            }
+            })
         if self.needEditing! == true{
             self.tableView.editing = true
             self.navigationItem.leftBarButtonItem = nil

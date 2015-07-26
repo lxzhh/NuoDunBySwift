@@ -16,7 +16,11 @@ class NODFiancialController: NODBaseMainViewController {
    
     override func viewDidLoad() {
         super.viewDidLoad()
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            SVProgressHUD.showWithStatus("加载中")
+        });
         NODSessionManager.sharedInstance.finacialInfoList { (supposeToPay, alreadyPayed, unpaid, success, list) -> () in
+            SVProgressHUD.dismiss()
             self.supposeToPayLabel.text = String(supposeToPay!).toCurrency()
             self.alreadyPayedLabel.text = String(alreadyPayed!).toCurrency()
             self.unpaidLabel.text = String(unpaid!).toCurrency()

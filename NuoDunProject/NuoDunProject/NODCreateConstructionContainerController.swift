@@ -200,9 +200,20 @@ class NODCreateConstructionContainerController: UITableViewController {
         
         let requestOperation = AFHTTPRequestOperation(request: theRequest)
         requestOperation.setCompletionBlockWithSuccess({ (operation, responseObject) -> Void in
-            SVProgressHUD.showSuccessWithStatus("")
+            let data = responseObject as! NSData
+            let xml = SWXMLHash.parse(data)
+            let resultString :String? = xml["soap:Envelope"]["soap:Body"]["NewWorkerResponse"]["NewWorkerResult"].element?.text
+            if resultString!.rangeOfString("\"status\":true") != nil{
+                SVProgressHUD.showSuccessWithStatus("成功创建")
+                
+                self.navigationController?.popViewControllerAnimated(true)
+            }else
+            {
+                SVProgressHUD.showErrorWithStatus("创建失败，请检查填写的数据")
+            }
+            self.navigationController?.popViewControllerAnimated(true)
         }, failure: { (operation, error) -> Void in
-            
+            SVProgressHUD.showErrorWithStatus("创建失败，请检查填写的数据")
         })
         requestOperation.start()
     }

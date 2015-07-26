@@ -38,6 +38,10 @@ class NODUserViewController: UIViewController,UITableViewDelegate,UITableViewDat
     }
 
     @IBAction func exitAction(sender: AnyObject) {
+        let loginVC :NODLoginViewController = UIStoryboard(name: "NODStoryboard", bundle: nil).instantiateViewControllerWithIdentifier("NODLoginViewController") as! NODLoginViewController
+        
+            self.view.window?.rootViewController?.presentViewController(loginVC, animated: false, completion: nil)
+        
     }
    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {

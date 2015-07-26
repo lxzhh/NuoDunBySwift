@@ -53,19 +53,23 @@ class NODWorkerDetailsController: UITableViewController {
 
         actionSheet.rac_buttonClickedSignal().subscribeNext { (x) -> Void in
             let row = x as! Int
-            let imagePicker =  UIImagePickerController()
-            imagePicker.rac_imageSelectedSignal().subscribeNext({ (x) -> Void in
-                
-            })
-            imagePicker.sourceType = .Camera
-            self.presentViewController(imagePicker, animated: true, completion: nil)
+            if row != actionSheet.cancelButtonIndex{
+                let imagePicker =  UIImagePickerController()
+                imagePicker.rac_imageSelectedSignal().subscribeNext({ (u) -> Void in
+                    let userInfo = u as! [String : AnyObject]
+                    let image = userInfo[UIImagePickerControllerOriginalImage] as! UIImage
+                    self.uploadRequest(image, type: String(row))
+                    imagePicker.dismissViewControllerAnimated(true, completion: nil)
+                })
+                imagePicker.sourceType = .Camera
+                self.presentViewController(imagePicker, animated: true, completion: nil)
+            }
+            
         }
         actionSheet.showInView(self.view.superview)
     }
     
-    @IBAction func quitJob(sender: AnyObject) {
-        
-    }
+   
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -74,61 +78,89 @@ class NODWorkerDetailsController: UITableViewController {
     override func tableView(tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
         return 0
     }
-    // MARK: - Table view data source
-
-    /*
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! UITableViewCell
-
-        // Configure the cell...
-
-        return cell
+    
+    @IBAction func quitJob(sender: AnyObject) {
+        let alertView = UIAlertView(title: "提示", message: "是否删除记录", delegate: nil, cancelButtonTitle: "取消")
+        alertView.addButtonWithTitle("确定")
+        alertView.rac_buttonClickedSignal().subscribeNext { (x) -> Void in
+            let number = x as! Int
+            if number != alertView.cancelButtonIndex{
+                 self.deleteRequest(self.workId)
+            }
+        }
+        alertView.show()
+       
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the specified item to be editable.
-        return true
+    
+    func deleteRequest( deletedId : String?){
+        
+        let user = LoginUser.loadSaved()!
+        
+        var soapMessage = "<v:Envelope xmlns:i='http://www.w3.org/2001/XMLSchema-instance' xmlns:d='http://www.w3.org/2001/XMLSchema' xmlns:c='http://www.w3.org/2003/05/soap-encoding' xmlns:v='http://www.w3.org/2003/05/soap-envelope'><v:Header /><v:Body><MarkDimission xmlns='http://tempuri.org/' id='o0' c:root='1'><LoginID i:type='d:string'>\(user.loginId!)</LoginID><SFZH  i:type=\"d:string\">\(deletedId!)</SFZH></MarkDimission></v:Body></v:Envelope>"
+        
+        var urlString = "http://115.231.54.166:9090/jobrecordapp.asmx"
+        
+        var url = NSURL(string: urlString)
+        
+        var theRequest = NSMutableURLRequest(URL: url!)
+        
+        var msgLength = String(count(soapMessage))
+        
+        theRequest.addValue("application/soap+xml;charset=utf-8", forHTTPHeaderField: "Content-Type")
+        theRequest.addValue(msgLength, forHTTPHeaderField: "Content-Length")
+        theRequest.HTTPMethod = "POST"
+        theRequest.HTTPBody = soapMessage.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) // or false
+        
+        let requestOperation = AFHTTPRequestOperation(request: theRequest)
+        requestOperation.setCompletionBlockWithSuccess({ (operation, responseObject) -> Void in
+            SVProgressHUD.showSuccessWithStatus("成功删除")
+            self.navigationController?.popViewControllerAnimated(true)
+            }, failure: { (operation, error) -> Void in
+                SVProgressHUD.showErrorWithStatus("删除失败")
+        })
+        requestOperation.start()
+        
     }
-    */
 
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    func uploadRequest(image : UIImage, type: String){
+        dispatch_async(dispatch_queue_create("", nil
+            ), { () -> Void in
+                let imageData = UIImageJPEGRepresentation(image, 0.5)
+                let base64String = imageData.base64EncodedDataWithOptions(.allZeros)
+                let user = LoginUser.loadSaved()!
+                
+                var soapMessage = "<v:Envelope xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:d=\"http://www.w3.org/2001/XMLSchema\" xmlns:c=\"http://www.w3.org/2003/05/soap-encoding\" xmlns:v=\"http://www.w3.org/2003/05/soap-envelope\"><v:Header /><v:Body><WorkerPhoto xmlns=\"http://tempuri.org/\" id=\"o0\" c:root=\"1\"><IMGInBase64 i:type=\"d:string\">\(base64String)</IMGInBase64><SFZH i:type=\"d:string\">\(user.loginId!)</SFZH><PType i:type=\"d:string\">0</PType></WorkerPhoto></v:Body></v:Envelope>"
+                
+                var urlString = "http://115.231.54.166:9090/jobrecordapp.asmx"
+                
+                var url = NSURL(string: urlString)
+                
+                var theRequest = NSMutableURLRequest(URL: url!)
+                
+                var msgLength = String(count(soapMessage))
+                
+                theRequest.addValue("application/soap+xml;charset=utf-8", forHTTPHeaderField: "Content-Type")
+                theRequest.addValue(msgLength, forHTTPHeaderField: "Content-Length")
+                theRequest.HTTPMethod = "POST"
+                theRequest.HTTPBody = soapMessage.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) // or false
+                
+                let requestOperation = AFHTTPRequestOperation(request: theRequest)
+                requestOperation.setCompletionBlockWithSuccess({ (operation, responseObject) -> Void in
+                    let data = responseObject as! NSData
+                    let xml = SWXMLHash.parse(data)
+                    let resultString :String? = xml["soap:Envelope"]["soap:Body"]["NewWorkerResponse"]["NewWorkerResult"].element?.text
+                    if resultString!.rangeOfString("\"status\":true") != nil{
+                        SVProgressHUD.showSuccessWithStatus("成功上传")
+                        //                self.navigationController?.popViewControllerAnimated(true)
+                    }
+                    
+                    }, failure: { (operation, error) -> Void in
+                        SVProgressHUD.showErrorWithStatus("上传失败")
+                })
+                requestOperation.start()
+        })
+        
+        
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
 }

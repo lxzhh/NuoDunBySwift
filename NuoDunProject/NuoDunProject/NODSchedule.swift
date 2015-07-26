@@ -9,7 +9,7 @@
 import UIKit
 
 class NODSchedule: NSObject ,Mappable, Printable{
-    var subprojID : Int?
+    var subprojID : String?
     var subprojName : String?
     var projLocation : String?
     var projLoad : Float?
@@ -17,6 +17,8 @@ class NODSchedule: NSObject ,Mappable, Printable{
     var endDate : String?
     var completedPercent : Float?
     var changeCode : String?
+
+
     override init(){}
     required init?(_ map: Map) {
         super.init()
@@ -25,6 +27,7 @@ class NODSchedule: NSObject ,Mappable, Printable{
     
     // Mappable
     func mapping(map: Map) {
+        
         subprojID <- map["ZXMBM"]
         subprojName <- map["ZXMMC"]
         projLocation <- map["BWMC"]

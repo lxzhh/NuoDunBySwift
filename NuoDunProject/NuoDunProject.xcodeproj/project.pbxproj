@@ -66,6 +66,7 @@
 		A92CBDDC1B48D73A004E4D52 /* NODContructionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92CBDDB1B48D73A004E4D52 /* NODContructionCell.swift */; };
 		A93EFB471B6322DB00BA1D88 /* NODProgressController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93EFB461B6322DB00BA1D88 /* NODProgressController.swift */; };
 		A93EFB4B1B637B7300BA1D88 /* NODSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93EFB4A1B637B7300BA1D88 /* NODSchedule.swift */; };
+		A93EFB4D1B63829200BA1D88 /* NODScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93EFB4C1B63829200BA1D88 /* NODScheduleCell.swift */; };
 		A94BDC0C1B494DF2008560B5 /* NODConstructionDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94BDC0B1B494DF2008560B5 /* NODConstructionDetail.swift */; };
 		A95FF2241B5414F300AD747A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A95FF2231B5414F300AD747A /* Security.framework */; };
 		A95FF2261B54150300AD747A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A95FF2251B54150300AD747A /* SystemConfiguration.framework */; };
@@ -77,6 +78,9 @@
 		A969672E1B53FBB4000EC3A4 /* NODObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A969672D1B53FBB4000EC3A4 /* NODObject.swift */; };
 		A97362471B50C5900052567E /* NODCreateNewUserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97362461B50C5900052567E /* NODCreateNewUserController.swift */; };
 		A97461FB1B51507400CCEA2A /* NODGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97461FA1B51507400CCEA2A /* NODGroup.swift */; };
+		A97E11191B63AA7000A42436 /* NODScheduleDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97E11181B63AA7000A42436 /* NODScheduleDetailController.swift */; };
+		A97E111B1B63B0AE00A42436 /* NODScheduleContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97E111A1B63B0AE00A42436 /* NODScheduleContainerController.swift */; };
+		A97E111D1B63CC4300A42436 /* NODScheduleDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97E111C1B63CC4300A42436 /* NODScheduleDetail.swift */; };
 		A9984D771B3EEF38007118D9 /* NODGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9984D761B3EEF38007118D9 /* NODGlobal.swift */; };
 /* End PBXBuildFile section */
 
@@ -148,6 +152,7 @@
 		A92CBDDB1B48D73A004E4D52 /* NODContructionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NODContructionCell.swift; sourceTree = "<group>"; };
 		A93EFB461B6322DB00BA1D88 /* NODProgressController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NODProgressController.swift; sourceTree = "<group>"; };
 		A93EFB4A1B637B7300BA1D88 /* NODSchedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NODSchedule.swift; sourceTree = "<group>"; };
+		A93EFB4C1B63829200BA1D88 /* NODScheduleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NODScheduleCell.swift; sourceTree = "<group>"; };
 		A94BDC0B1B494DF2008560B5 /* NODConstructionDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NODConstructionDetail.swift; sourceTree = "<group>"; };
 		A95FF2231B5414F300AD747A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		A95FF2251B54150300AD747A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -159,6 +164,9 @@
 		A969672D1B53FBB4000EC3A4 /* NODObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NODObject.swift; sourceTree = "<group>"; };
 		A97362461B50C5900052567E /* NODCreateNewUserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NODCreateNewUserController.swift; sourceTree = "<group>"; };
 		A97461FA1B51507400CCEA2A /* NODGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NODGroup.swift; sourceTree = "<group>"; };
+		A97E11181B63AA7000A42436 /* NODScheduleDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NODScheduleDetailController.swift; sourceTree = "<group>"; };
+		A97E111A1B63B0AE00A42436 /* NODScheduleContainerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NODScheduleContainerController.swift; sourceTree = "<group>"; };
+		A97E111C1B63CC4300A42436 /* NODScheduleDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NODScheduleDetail.swift; sourceTree = "<group>"; };
 		A9984D761B3EEF38007118D9 /* NODGlobal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NODGlobal.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -241,6 +249,7 @@
 				7E0FD6951B5B731C007AE821 /* Array+NODExtention.swift */,
 				7E6234451B5D3B5E00C42E41 /* NODStatues.swift */,
 				A93EFB4A1B637B7300BA1D88 /* NODSchedule.swift */,
+				A97E111C1B63CC4300A42436 /* NODScheduleDetail.swift */,
 			);
 			name = models;
 			sourceTree = "<group>";
@@ -279,6 +288,7 @@
 				A92CBDDB1B48D73A004E4D52 /* NODContructionCell.swift */,
 				7E0FD69B1B5B82B3007AE821 /* NODAddObjectCell.swift */,
 				7E82DAF11B5BE30C00592B5E /* NODRemoveObjectCell.swift */,
+				A93EFB4C1B63829200BA1D88 /* NODScheduleCell.swift */,
 			);
 			name = customViews;
 			sourceTree = "<group>";
@@ -294,8 +304,10 @@
 				1A1BDA0D1B47FFE10082941E /* NODWorkerDetailsController.swift */,
 				A90292421B48E23600A82E90 /* NODConstructionDetailController.swift */,
 				A97362461B50C5900052567E /* NODCreateNewUserController.swift */,
-				7E0FD6931B5B5D25007AE821 /* NODCreateContructionController.swift */,
 				7E0FD69F1B5B8ED9007AE821 /* NODCreateConstructionContainerController.swift */,
+				7E0FD6931B5B5D25007AE821 /* NODCreateContructionController.swift */,
+				A97E11181B63AA7000A42436 /* NODScheduleDetailController.swift */,
+				A97E111A1B63B0AE00A42436 /* NODScheduleContainerController.swift */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -419,6 +431,7 @@
 				TargetAttributes = {
 					7E904FE61B3583DA007BD238 = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = U53G9MRDA7;
 					};
 				};
 			};
@@ -512,13 +525,16 @@
 				A97362471B50C5900052567E /* NODCreateNewUserController.swift in Sources */,
 				A93EFB471B6322DB00BA1D88 /* NODProgressController.swift in Sources */,
 				7E39027B1B366F1F0061DD90 /* EnumTransform.swift in Sources */,
+				A97E111B1B63B0AE00A42436 /* NODScheduleContainerController.swift in Sources */,
 				7E3902591B366D560061DD90 /* Mapper.swift in Sources */,
 				A96967281B53F924000EC3A4 /* NODLocation.swift in Sources */,
 				1A1BDA021B479F660082941E /* NODPersonalFinacialController.swift in Sources */,
 				A91230171B48B64F00BCCEBF /* NODFinacialInfo.swift in Sources */,
+				A97E11191B63AA7000A42436 /* NODScheduleDetailController.swift in Sources */,
 				1A1BDA061B47BFCE0082941E /* NODLabourController.swift in Sources */,
 				A9984D771B3EEF38007118D9 /* NODGlobal.swift in Sources */,
 				7EADDCDF1B37BC260095EDF8 /* NODMainMenuCell.swift in Sources */,
+				A93EFB4D1B63829200BA1D88 /* NODScheduleCell.swift in Sources */,
 				7E60CD3F1B55647700D60F3D /* NODMaterial.swift in Sources */,
 				1AEEE2BB1B3F99AD00DDCD3C /* NODBaseMainViewController.swift in Sources */,
 				1A1BDA0C1B47CA9B0082941E /* NODLabourSectionCell.swift in Sources */,
@@ -537,6 +553,7 @@
 				7E39025D1B366DAA0061DD90 /* LoginUser.swift in Sources */,
 				A969672A1B53FA30000EC3A4 /* NODSubproj.swift in Sources */,
 				7E0FD69D1B5B82B3007AE821 /* NODAddObjectCell.swift in Sources */,
+				A97E111D1B63CC4300A42436 /* NODScheduleDetail.swift in Sources */,
 				7E0FD6941B5B5D25007AE821 /* NODCreateContructionController.swift in Sources */,
 				7E39024F1B3668FA0061DD90 /* SwiftyJSON.swift in Sources */,
 				7E6234461B5D3B5E00C42E41 /* NODStatues.swift in Sources */,
@@ -640,8 +657,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3EF6B6C4A419E33652599CB6 /* Pods.debug.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: jianqiao song (6KQ7RP3Y9K)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SYSTEM_APPS_DIR)/Reveal.app/Contents/SharedSupport/iOS-Libraries",
@@ -676,8 +695,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 60B21C26AD2B275F0989B3E1 /* Pods.release.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: jianqiao song (6KQ7RP3Y9K)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SYSTEM_APPS_DIR)/Reveal.app/Contents/SharedSupport/iOS-Libraries",
@@ -699,8 +720,6 @@
 					"\"Security\"",
 					"-framework",
 					"\"SystemConfiguration\"",
-					"-framework",
-					Reveal,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "a7954917-9b68-4216-9212-796735f11846";

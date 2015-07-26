@@ -132,18 +132,27 @@ class NODCreateNewUserController: UITableViewController, UITextFieldDelegate {
         theRequest.HTTPMethod = "POST"
         theRequest.HTTPBody = soapMessage.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) // or false
         
-        var connection = NSURLConnection(request: theRequest, delegate: self, startImmediately: true)
-        connection!.start()
-        
-        if (connection == true) {
-            var mutableData : Void = NSMutableData.initialize()
-        }
+        let requestOperation = AFHTTPRequestOperation(request: theRequest)
+        requestOperation.setCompletionBlockWithSuccess({ (operation, responseObject) -> Void in
+            let data = responseObject as! NSData
+            let xml = SWXMLHash.parse(data)
+            let resultString :String? = xml["soap:Envelope"]["soap:Body"]["NewWorkerResponse"]["NewWorkerResult"].element?.text
+            if resultString!.rangeOfString("\"status\":true") != nil{
+                SVProgressHUD.showSuccessWithStatus("成功创建")
+                
+                self.navigationController?.popViewControllerAnimated(true)
+            }else
+            {
+                 SVProgressHUD.showErrorWithStatus("创建失败，请检查填写的数据")
+            }
+            
+            }, failure: { (operation, error) -> Void in
+                SVProgressHUD.showErrorWithStatus("创建失败，请检查填写的数据")
+        })
+        requestOperation.start()
     }
     
-    func connection(connection: NSURLConnection, didReceiveResponse response: NSURLResponse)
-    {
-        
-    }
+    
 }
 
 
